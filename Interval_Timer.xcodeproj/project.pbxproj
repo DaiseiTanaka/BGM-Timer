@@ -7,18 +7,85 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3421FBDDC875768FCDDD117B /* Pods_Interval_Timer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B40DBBD47F7AE887D20C457 /* Pods_Interval_Timer.framework */; };
+		351503BE28EA916F000526BC /* WorkThroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351503BD28EA916F000526BC /* WorkThroughView.swift */; };
+		3521A30C28D7559B0038913E /* OrientationDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3521A30B28D7559B0038913E /* OrientationDetector.swift */; };
+		35226BA728D4309100105C95 /* FinalSoundListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35226BA628D4309100105C95 /* FinalSoundListView.swift */; };
+		3534781128E858EA0071A7C7 /* ToolBarViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3534781028E858EA0071A7C7 /* ToolBarViewModifier.swift */; };
+		3534781328E85B020071A7C7 /* PageContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3534781228E85B020071A7C7 /* PageContentView.swift */; };
+		3534781528E861160071A7C7 /* TopMenuTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3534781428E861160071A7C7 /* TopMenuTest.swift */; };
+		3537294628FD1E7B003EF92D /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3537294528FD1E7B003EF92D /* NotificationModel.swift */; };
+		354D279628E6CAEA008CA018 /* BannarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354D279528E6CAEA008CA018 /* BannarView.swift */; };
 		354E702828C8CAF7001EE49F /* Interval_TimerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354E702728C8CAF7001EE49F /* Interval_TimerApp.swift */; };
 		354E702A28C8CAF7001EE49F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354E702928C8CAF7001EE49F /* ContentView.swift */; };
 		354E702C28C8CAF9001EE49F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 354E702B28C8CAF9001EE49F /* Assets.xcassets */; };
 		354E702F28C8CAF9001EE49F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 354E702E28C8CAF9001EE49F /* Preview Assets.xcassets */; };
+		354E703628C8CBA4001EE49F /* TimeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354E703528C8CBA4001EE49F /* TimeManager.swift */; };
+		354E703828C8CBC2001EE49F /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354E703728C8CBC2001EE49F /* Data.swift */; };
+		354E703A28C8CBEC001EE49F /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354E703928C8CBEC001EE49F /* TimerView.swift */; };
+		354E703C28C8CBFD001EE49F /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354E703B28C8CBFD001EE49F /* PickerView.swift */; };
+		354E703E28C8CC05001EE49F /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354E703D28C8CC05001EE49F /* ProgressBarView.swift */; };
+		354E704028C8CC3F001EE49F /* ButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354E703F28C8CC3F001EE49F /* ButtonsView.swift */; };
+		354E704228C8CC4D001EE49F /* SettingButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354E704128C8CC4D001EE49F /* SettingButtonView.swift */; };
+		354E704428C8CC53001EE49F /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354E704328C8CC53001EE49F /* SettingView.swift */; };
+		354E704628C8CC5A001EE49F /* SoundListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354E704528C8CC5A001EE49F /* SoundListView.swift */; };
+		354E704828C8CC63001EE49F /* TimeOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354E704728C8CC63001EE49F /* TimeOver.swift */; };
+		354E704B28C8D46B001EE49F /* ResizableSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 354E704A28C8D46B001EE49F /* ResizableSheet */; };
+		35645B9228DDA5C9003D3556 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35645B9128DDA5C9003D3556 /* InputView.swift */; };
+		35645B9428DDA695003D3556 /* MyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35645B9328DDA695003D3556 /* MyListView.swift */; };
+		35645B9B28DF0BDF003D3556 /* MyListDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35645B9A28DF0BDF003D3556 /* MyListDetailView.swift */; };
+		35645B9D28E19CF7003D3556 /* CardViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35645B9C28E19CF7003D3556 /* CardViewTest.swift */; };
+		35B4EEFB28C8EA2600648224 /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 35B4EEFA28C8EA2600648224 /* PartialSheet */; };
+		35BFFE7928E4885000153EBF /* Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BFFE7828E4885000153EBF /* Scale.swift */; };
+		35CE63C628F9653F0045D7F9 /* StopWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CE63C528F9653F0045D7F9 /* StopWatch.swift */; };
+		35E0B29B28F45BED0011F019 /* WorkThroughAdgendaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E0B29A28F45BED0011F019 /* WorkThroughAdgendaView.swift */; };
+		35E3895628E1E6FD0050A354 /* floatingButtonAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E3895528E1E6FD0050A354 /* floatingButtonAdd.swift */; };
+		35ED997D28C9D1F80075F0F3 /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35ED997C28C9D1F70075F0F3 /* ModalView.swift */; };
+		35ED997F28CA020E0075F0F3 /* IntervalListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35ED997E28CA020E0075F0F3 /* IntervalListView.swift */; };
+		35ED998228CA03EF0075F0F3 /* IntervalDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 35ED998028CA03EF0075F0F3 /* IntervalDataModel.xcdatamodeld */; };
+		35EE10E628D96FD100D78404 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE10E528D96FD100D78404 /* EditView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0AEE0FC25D44842286D6A1B9 /* Pods-Interval_Timer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Interval_Timer.release.xcconfig"; path = "Target Support Files/Pods-Interval_Timer/Pods-Interval_Timer.release.xcconfig"; sourceTree = "<group>"; };
+		351503BD28EA916F000526BC /* WorkThroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkThroughView.swift; sourceTree = "<group>"; };
+		3521A30B28D7559B0038913E /* OrientationDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationDetector.swift; sourceTree = "<group>"; };
+		35226BA628D4309100105C95 /* FinalSoundListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalSoundListView.swift; sourceTree = "<group>"; };
+		3534781028E858EA0071A7C7 /* ToolBarViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBarViewModifier.swift; sourceTree = "<group>"; };
+		3534781228E85B020071A7C7 /* PageContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageContentView.swift; sourceTree = "<group>"; };
+		3534781428E861160071A7C7 /* TopMenuTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMenuTest.swift; sourceTree = "<group>"; };
+		3537294528FD1E7B003EF92D /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
+		354D279428E6C7B6008CA018 /* Interval-Timer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Interval-Timer-Info.plist"; sourceTree = SOURCE_ROOT; };
+		354D279528E6CAEA008CA018 /* BannarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannarView.swift; sourceTree = "<group>"; };
 		354E702428C8CAF7001EE49F /* Interval_Timer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Interval_Timer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		354E702728C8CAF7001EE49F /* Interval_TimerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interval_TimerApp.swift; sourceTree = "<group>"; };
 		354E702928C8CAF7001EE49F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		354E702B28C8CAF9001EE49F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		354E702E28C8CAF9001EE49F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		354E703528C8CBA4001EE49F /* TimeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeManager.swift; sourceTree = "<group>"; };
+		354E703728C8CBC2001EE49F /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		354E703928C8CBEC001EE49F /* TimerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		354E703B28C8CBFD001EE49F /* PickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
+		354E703D28C8CC05001EE49F /* ProgressBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
+		354E703F28C8CC3F001EE49F /* ButtonsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonsView.swift; sourceTree = "<group>"; };
+		354E704128C8CC4D001EE49F /* SettingButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingButtonView.swift; sourceTree = "<group>"; };
+		354E704328C8CC53001EE49F /* SettingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		354E704528C8CC5A001EE49F /* SoundListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundListView.swift; sourceTree = "<group>"; };
+		354E704728C8CC63001EE49F /* TimeOver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeOver.swift; sourceTree = "<group>"; };
+		35645B9128DDA5C9003D3556 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
+		35645B9328DDA695003D3556 /* MyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListView.swift; sourceTree = "<group>"; };
+		35645B9A28DF0BDF003D3556 /* MyListDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListDetailView.swift; sourceTree = "<group>"; };
+		35645B9C28E19CF7003D3556 /* CardViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewTest.swift; sourceTree = "<group>"; };
+		35BFFE7828E4885000153EBF /* Scale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scale.swift; sourceTree = "<group>"; };
+		35CE63C528F9653F0045D7F9 /* StopWatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatch.swift; sourceTree = "<group>"; };
+		35E0B29A28F45BED0011F019 /* WorkThroughAdgendaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkThroughAdgendaView.swift; sourceTree = "<group>"; };
+		35E3895528E1E6FD0050A354 /* floatingButtonAdd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = floatingButtonAdd.swift; sourceTree = "<group>"; };
+		35ED997C28C9D1F70075F0F3 /* ModalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
+		35ED997E28CA020E0075F0F3 /* IntervalListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalListView.swift; sourceTree = "<group>"; };
+		35ED998128CA03EF0075F0F3 /* IntervalDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = IntervalDataModel.xcdatamodel; sourceTree = "<group>"; };
+		35EE10E528D96FD100D78404 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
+		6B40DBBD47F7AE887D20C457 /* Pods_Interval_Timer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Interval_Timer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E31B3F2B7CB3099E6CABE2AC /* Pods-Interval_Timer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Interval_Timer.debug.xcconfig"; path = "Target Support Files/Pods-Interval_Timer/Pods-Interval_Timer.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +93,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35B4EEFB28C8EA2600648224 /* PartialSheet in Frameworks */,
+				354E704B28C8D46B001EE49F /* ResizableSheet in Frameworks */,
+				3421FBDDC875768FCDDD117B /* Pods_Interval_Timer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -37,6 +107,8 @@
 			children = (
 				354E702628C8CAF7001EE49F /* Interval_Timer */,
 				354E702528C8CAF7001EE49F /* Products */,
+				40C50FBE5D79121C10F204C6 /* Pods */,
+				CC247F60AAC70E96BF33D182 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -51,10 +123,14 @@
 		354E702628C8CAF7001EE49F /* Interval_Timer */ = {
 			isa = PBXGroup;
 			children = (
-				354E702728C8CAF7001EE49F /* Interval_TimerApp.swift */,
-				354E702928C8CAF7001EE49F /* ContentView.swift */,
-				354E702B28C8CAF9001EE49F /* Assets.xcassets */,
+				354D279428E6C7B6008CA018 /* Interval-Timer-Info.plist */,
+				35645B9928DDA81A003D3556 /* Manager */,
+				35645B9728DDA763003D3556 /* View */,
+				35645B9628DDA72E003D3556 /* UI */,
+				35645B9528DDA6FD003D3556 /* Lists */,
+				35645B9828DDA784003D3556 /* Test */,
 				354E702D28C8CAF9001EE49F /* Preview Content */,
+				354E702B28C8CAF9001EE49F /* Assets.xcassets */,
 			);
 			path = Interval_Timer;
 			sourceTree = "<group>";
@@ -67,6 +143,90 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		35645B9528DDA6FD003D3556 /* Lists */ = {
+			isa = PBXGroup;
+			children = (
+				35ED997E28CA020E0075F0F3 /* IntervalListView.swift */,
+				354E704528C8CC5A001EE49F /* SoundListView.swift */,
+				35226BA628D4309100105C95 /* FinalSoundListView.swift */,
+				35645B9328DDA695003D3556 /* MyListView.swift */,
+			);
+			path = Lists;
+			sourceTree = "<group>";
+		};
+		35645B9628DDA72E003D3556 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				354E703928C8CBEC001EE49F /* TimerView.swift */,
+				354E703B28C8CBFD001EE49F /* PickerView.swift */,
+				354E703D28C8CC05001EE49F /* ProgressBarView.swift */,
+				354E703F28C8CC3F001EE49F /* ButtonsView.swift */,
+				35E3895528E1E6FD0050A354 /* floatingButtonAdd.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		35645B9728DDA763003D3556 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				354E702928C8CAF7001EE49F /* ContentView.swift */,
+				354E704728C8CC63001EE49F /* TimeOver.swift */,
+				35ED997C28C9D1F70075F0F3 /* ModalView.swift */,
+				35645B9A28DF0BDF003D3556 /* MyListDetailView.swift */,
+				35EE10E528D96FD100D78404 /* EditView.swift */,
+				35645B9128DDA5C9003D3556 /* InputView.swift */,
+				354D279528E6CAEA008CA018 /* BannarView.swift */,
+				351503BD28EA916F000526BC /* WorkThroughView.swift */,
+				35E0B29A28F45BED0011F019 /* WorkThroughAdgendaView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		35645B9828DDA784003D3556 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				3537294528FD1E7B003EF92D /* NotificationModel.swift */,
+				3534781028E858EA0071A7C7 /* ToolBarViewModifier.swift */,
+				35ED998028CA03EF0075F0F3 /* IntervalDataModel.xcdatamodeld */,
+				354E704128C8CC4D001EE49F /* SettingButtonView.swift */,
+				354E704328C8CC53001EE49F /* SettingView.swift */,
+				3521A30B28D7559B0038913E /* OrientationDetector.swift */,
+				35645B9C28E19CF7003D3556 /* CardViewTest.swift */,
+				3534781228E85B020071A7C7 /* PageContentView.swift */,
+				3534781428E861160071A7C7 /* TopMenuTest.swift */,
+			);
+			path = Test;
+			sourceTree = "<group>";
+		};
+		35645B9928DDA81A003D3556 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				354E702728C8CAF7001EE49F /* Interval_TimerApp.swift */,
+				354E703528C8CBA4001EE49F /* TimeManager.swift */,
+				354E703728C8CBC2001EE49F /* Data.swift */,
+				35BFFE7828E4885000153EBF /* Scale.swift */,
+				35CE63C528F9653F0045D7F9 /* StopWatch.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		40C50FBE5D79121C10F204C6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E31B3F2B7CB3099E6CABE2AC /* Pods-Interval_Timer.debug.xcconfig */,
+				0AEE0FC25D44842286D6A1B9 /* Pods-Interval_Timer.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		CC247F60AAC70E96BF33D182 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6B40DBBD47F7AE887D20C457 /* Pods_Interval_Timer.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,15 +234,21 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 354E703228C8CAF9001EE49F /* Build configuration list for PBXNativeTarget "Interval_Timer" */;
 			buildPhases = (
+				8441237AF6BB24019BDB0191 /* [CP] Check Pods Manifest.lock */,
 				354E702028C8CAF7001EE49F /* Sources */,
 				354E702128C8CAF7001EE49F /* Frameworks */,
 				354E702228C8CAF7001EE49F /* Resources */,
+				C260CF2189B92D283D621461 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = Interval_Timer;
+			packageProductDependencies = (
+				354E704A28C8D46B001EE49F /* ResizableSheet */,
+				35B4EEFA28C8EA2600648224 /* PartialSheet */,
+			);
 			productName = Interval_Timer;
 			productReference = 354E702428C8CAF7001EE49F /* Interval_Timer.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +277,10 @@
 				Base,
 			);
 			mainGroup = 354E701B28C8CAF7001EE49F;
+			packageReferences = (
+				354E704928C8D46B001EE49F /* XCRemoteSwiftPackageReference "ResizableSheet" */,
+				35B4EEF928C8EA2600648224 /* XCRemoteSwiftPackageReference "PartialSheet" */,
+			);
 			productRefGroup = 354E702528C8CAF7001EE49F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -132,13 +302,85 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		8441237AF6BB24019BDB0191 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Interval_Timer-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C260CF2189B92D283D621461 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Interval_Timer/Pods-Interval_Timer-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Interval_Timer/Pods-Interval_Timer-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Interval_Timer/Pods-Interval_Timer-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		354E702028C8CAF7001EE49F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				354E704828C8CC63001EE49F /* TimeOver.swift in Sources */,
+				354E703A28C8CBEC001EE49F /* TimerView.swift in Sources */,
+				354D279628E6CAEA008CA018 /* BannarView.swift in Sources */,
+				354E704428C8CC53001EE49F /* SettingView.swift in Sources */,
+				3534781528E861160071A7C7 /* TopMenuTest.swift in Sources */,
+				354E704628C8CC5A001EE49F /* SoundListView.swift in Sources */,
+				3521A30C28D7559B0038913E /* OrientationDetector.swift in Sources */,
+				35ED997D28C9D1F80075F0F3 /* ModalView.swift in Sources */,
+				35645B9B28DF0BDF003D3556 /* MyListDetailView.swift in Sources */,
 				354E702A28C8CAF7001EE49F /* ContentView.swift in Sources */,
+				3537294628FD1E7B003EF92D /* NotificationModel.swift in Sources */,
+				35ED998228CA03EF0075F0F3 /* IntervalDataModel.xcdatamodeld in Sources */,
+				35226BA728D4309100105C95 /* FinalSoundListView.swift in Sources */,
+				35EE10E628D96FD100D78404 /* EditView.swift in Sources */,
+				354E704228C8CC4D001EE49F /* SettingButtonView.swift in Sources */,
+				3534781128E858EA0071A7C7 /* ToolBarViewModifier.swift in Sources */,
+				35645B9228DDA5C9003D3556 /* InputView.swift in Sources */,
+				354E703C28C8CBFD001EE49F /* PickerView.swift in Sources */,
 				354E702828C8CAF7001EE49F /* Interval_TimerApp.swift in Sources */,
+				35E0B29B28F45BED0011F019 /* WorkThroughAdgendaView.swift in Sources */,
+				35ED997F28CA020E0075F0F3 /* IntervalListView.swift in Sources */,
+				351503BE28EA916F000526BC /* WorkThroughView.swift in Sources */,
+				354E703628C8CBA4001EE49F /* TimeManager.swift in Sources */,
+				3534781328E85B020071A7C7 /* PageContentView.swift in Sources */,
+				35645B9428DDA695003D3556 /* MyListView.swift in Sources */,
+				35CE63C628F9653F0045D7F9 /* StopWatch.swift in Sources */,
+				35645B9D28E19CF7003D3556 /* CardViewTest.swift in Sources */,
+				354E703828C8CBC2001EE49F /* Data.swift in Sources */,
+				354E704028C8CC3F001EE49F /* ButtonsView.swift in Sources */,
+				35E3895628E1E6FD0050A354 /* floatingButtonAdd.swift in Sources */,
+				35BFFE7928E4885000153EBF /* Scale.swift in Sources */,
+				354E703E28C8CC05001EE49F /* ProgressBarView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,7 +437,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -249,7 +491,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -261,59 +503,73 @@
 		};
 		354E703328C8CAF9001EE49F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E31B3F2B7CB3099E6CABE2AC /* Pods-Interval_Timer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.9.3;
 				DEVELOPMENT_ASSET_PATHS = "\"Interval_Timer/Preview Content\"";
 				DEVELOPMENT_TEAM = NZ6NQZK56A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Interval-Timer-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "BGM Timer";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "akikomi-project.Interval-Timer";
+				MARKETING_VERSION = 1.9.3;
+				PRODUCT_BUNDLE_IDENTIFIER = "akikomi-project.mindfulness-timer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		354E703428C8CAF9001EE49F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0AEE0FC25D44842286D6A1B9 /* Pods-Interval_Timer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.9.3;
 				DEVELOPMENT_ASSET_PATHS = "\"Interval_Timer/Preview Content\"";
 				DEVELOPMENT_TEAM = NZ6NQZK56A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Interval-Timer-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "BGM Timer";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "akikomi-project.Interval-Timer";
+				MARKETING_VERSION = 1.9.3;
+				PRODUCT_BUNDLE_IDENTIFIER = "akikomi-project.mindfulness-timer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -339,6 +595,52 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		354E704928C8D46B001EE49F /* XCRemoteSwiftPackageReference "ResizableSheet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mtj0928/ResizableSheet";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.4;
+			};
+		};
+		35B4EEF928C8EA2600648224 /* XCRemoteSwiftPackageReference "PartialSheet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AndreaMiotto/PartialSheet";
+			requirement = {
+				kind = versionRange;
+				maximumVersion = 4.0.0;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		354E704A28C8D46B001EE49F /* ResizableSheet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 354E704928C8D46B001EE49F /* XCRemoteSwiftPackageReference "ResizableSheet" */;
+			productName = ResizableSheet;
+		};
+		35B4EEFA28C8EA2600648224 /* PartialSheet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 35B4EEF928C8EA2600648224 /* XCRemoteSwiftPackageReference "PartialSheet" */;
+			productName = PartialSheet;
+		};
+/* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		35ED998028CA03EF0075F0F3 /* IntervalDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				35ED998128CA03EF0075F0F3 /* IntervalDataModel.xcdatamodel */,
+			);
+			currentVersion = 35ED998128CA03EF0075F0F3 /* IntervalDataModel.xcdatamodel */;
+			path = IntervalDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 354E701C28C8CAF7001EE49F /* Project object */;
 }
