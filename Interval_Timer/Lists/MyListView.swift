@@ -28,8 +28,12 @@ struct MyListView: View {
                     Button.init(action: { self.editMode = self.editMode.isEditing ? .inactive : .active }, label: {
                         if self.editMode.isEditing {
                             Image.init(systemName: "checkmark")
+                                .resizable()
+                                .frame(width: 20, height: 20)
                         } else {
                             Image.init(systemName: "square.and.pencil")
+                                .resizable()
+                                .frame(width: 20, height: 20)
                         }
                     })
                 }
@@ -39,19 +43,21 @@ struct MyListView: View {
                 {
                     ForEach(Array(timeManager.intervalList.enumerated()), id: \.offset) { index, list in
                         HStack {
-                            Text("\(index + 1): ")
-                                .font(.subheadline)
-                                .frame(alignment: .leading)
-                                .frame(minWidth: 7)
+//                            Text("\(index + 1): ")
+//                                .font(.subheadline)
+//                                .frame(alignment: .leading)
+//                                .frame(minWidth: 7)
                             
                             Text(list.listName)
                                 .font(.footnote)
+                                .lineLimit(1)
                             
                             Spacer()
                             
                             Text("(\(list.taskList.count))")
                             
                         }
+                        //.id(UUID())
                         .contentShape(Rectangle())
                         .listRowBackground(self.timeManager.pageIndex == index && self.timeManager.intervalList.count > 1 ? Color(UIColor.systemGray3) : Color(UIColor.systemBackground))
                         .onTapGesture {
@@ -94,18 +100,22 @@ struct MyListView: View {
                             Divider()
                             ForEach(Array(self.timeManager.intervalList[index].taskList.enumerated()), id: \.offset) { iindex, task in
                                 Text("\(iindex + 1):  \(task)      \(String(format: "%02d:%02d", self.timeManager.intervalList[index].minList[iindex], self.timeManager.intervalList[index].secList[iindex]))")
+                                    .lineLimit(1)
                             }
                         }))
                     }
                     .onDelete(perform: deleteList)
                     .onMove(perform: moveRow)
-                }                
+                }
             }
+            //.listStyle(.inset)
             addListButton
+            
         }
         //.background(Color(UIColor.systemGray6))
         .environment(\.editMode, self.$editMode)
         .animation(.easeInOut, value: editMode)  // editボタンを押したときのアニメーション
+        
     }
     
     
@@ -121,7 +131,9 @@ struct MyListView: View {
                     }) {
                         Image(systemName: "plus.circle.fill")
                             .font(.system(size: 40))
-                            .shadow(color: .gray, radius: 3, x: 3, y: 3)
+                            //.shadow(color: .gray, radius: 3, x: 3, y: 3)
+                            .shadow(color: .black.opacity(0.4), radius: 5, x: 3, y: 3)
+                            .shadow(color: .white.opacity(0.4), radius: 5, x: -3, y: -3)
                             .opacity(0.75)
                     }
                 Spacer()

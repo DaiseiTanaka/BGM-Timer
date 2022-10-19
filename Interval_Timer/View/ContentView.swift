@@ -345,6 +345,8 @@ struct ContentView: View {
                         .opacity((self.timeManager.timerStatus != .pause) ? 1 : 0.2)
                         .padding(.top, 50)
                         .padding(.bottom, 20)
+                        .frame(width: UIScreen.main.bounds.width * 0.8)
+                        .lineLimit(1)
                 }
             }
             .opacity(self.timeManager.curHeight <= middleHeight ? CGFloat(1-returnAnimationMinToMiddleHeight()) : 0)
@@ -364,6 +366,8 @@ struct ContentView: View {
                                 .foregroundColor(Color(UIColor.systemGray))
                                 .fontWeight(.medium)
                                 .opacity(self.timeManager.curHeight <= middleHeight ? CGFloat(returnAnimationMinToMiddleHeight()) : 1)
+                                .frame(maxWidth: UIScreen.main.bounds.width * 0.3)
+                                .lineLimit(1)
                             Spacer()
 
                         }
@@ -372,6 +376,9 @@ struct ContentView: View {
                             .font(.title2)
                             .foregroundColor(Color(UIColor.systemGray))
                             .fontWeight(.medium)
+                            .frame(maxWidth: UIScreen.main.bounds.width * 0.4)
+                            .lineLimit(1)
+                        
                         Spacer()
                         
                         //ZStack {
@@ -390,6 +397,8 @@ struct ContentView: View {
                             .font(.title2)
                             .foregroundColor(Color(UIColor.systemGray))
                             .fontWeight(.medium)
+                            .frame(maxWidth: UIScreen.main.bounds.width * 0.3)
+
                     }
                     Spacer()
                 }

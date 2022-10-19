@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Neumorphic
 
 struct ModalView: View {
     @EnvironmentObject var timeManager: TimeManager
@@ -54,68 +55,107 @@ struct ModalView: View {
     
     var mainView: some View {
         ZStack(alignment: .topLeading) {
-                VStack {
+            VStack {
+                ZStack {
+                    HStack {
                         
-                        ZStack {
-                            HStack {
-                                Button(action: {
-                                    if self.timeManager.intervalCount != 0 {
-                                        self.timeManager.intervalCount -= 1
-                                        self.timeManager.setTimer()
-                                    }
-                                }) {
-                                    VStack {
-                                        Image(systemName: self.timeManager.curHeight < maxHeight ? "chevron.backward.circle" : "chevron.up.circle")
-                                            .resizable()
-                                            .frame(width: 35, height: 35)
-                                            .opacity(self.timeManager.intervalCount == 0 ? 0.1 : 1)
-                                    }
-                                    .frame(width: 70, height: 65)
-                                }
-                                
-                                VStack {
-                                    Capsule()
-                                        .frame(width: 60, height: 3)
-                                        .foregroundColor(Color(UIColor.systemGray3))
-                                        .padding(.top, 10)
-                                    Spacer()
-                                }
-                                
-                                Button(action: {
-                                    if self.timeManager.intervalCount != self.timeManager.taskList.count - 1 || self.timeManager.taskList.count == 0 {
-                                        self.timeManager.intervalCount += 1
-                                        self.timeManager.setTimer()
-                                    }
-                                    
-                                }) {
-                                    VStack {
-                                        Image(systemName: self.timeManager.curHeight < maxHeight ? "chevron.forward.circle" : "chevron.down.circle")
-                                            .resizable()
-                                            .frame(width: 35, height: 35)
-                                            .opacity(self.timeManager.intervalCount == self.timeManager.taskList.count - 1 || self.timeManager.taskList.count == 0 ? 0.1 : 1)
-                                    }
-                                    .frame(width: 70, height: 65)
-                                }
-                                .cornerRadius(10)
+                        Button(action: {
+                            if self.timeManager.intervalCount != 0 {
+                                self.timeManager.intervalCount -= 1
+                                self.timeManager.setTimer()
+                            }
+                        }) {
+                            Image(systemName: self.timeManager.curHeight < maxHeight ? "chevron.backward" : "chevron.up")
+                                .resizable()
+                                .frame(width: self.timeManager.curHeight < maxHeight ? 10 : 15, height: self.timeManager.curHeight < maxHeight ? 15 : 10)
+                                .opacity(self.timeManager.intervalCount == 0 ? 0.1 : 1)
+                                .foregroundColor(.blue)
+                            
+                        }.softButtonStyle(Circle(), pressedEffect: .hard)
+                        
+                        
+//                        Button(action: {
+//                            if self.timeManager.intervalCount != 0 {
+//                                self.timeManager.intervalCount -= 1
+//                                self.timeManager.setTimer()
+//                            }
+//                        }) {
+//                            VStack {
+//                                Image(systemName: self.timeManager.curHeight < maxHeight ? "chevron.backward.circle" : "chevron.up.circle")
+//                                    .resizable()
+//                                    .frame(width: 35, height: 35)
+//                                    .opacity(self.timeManager.intervalCount == 0 ? 0.1 : 1)
+//                            }
+//                            .frame(width: 70, height: 65)
+//                        }
+                        
+                        VStack {
+                            //Capsule()
+                            if self.timeManager.curHeight >= maxHeight {
+                                Image(systemName: "chevron.compact.down")
+                                    .resizable()
+                                    .frame(width: 60, height: 7)
+                                    .foregroundColor(Color(UIColor.systemGray3))
+                                    .padding(.top, 10)
+                            } else {
+                                Capsule()
+                                    .frame(width: 60, height: 3)
+                                    .foregroundColor(Color(UIColor.systemGray3))
+                                    .padding(.top, 10)
                             }
                             
-                            if UIDevice.current.orientation.isPortrait && UIDevice.current.userInterfaceIdiom == .pad {
-                                ButtonsView()
-                            } else {
-                                ButtonsView()
-                            }
+                            Spacer()
                         }
-                        .frame(height: 90)
-                        .frame(maxWidth: .infinity)
-
-                        IntervalListView()
+                        
+                        Button(action: {
+                            if self.timeManager.intervalCount != self.timeManager.taskList.count - 1 || self.timeManager.taskList.count == 0 {
+                                self.timeManager.intervalCount += 1
+                                self.timeManager.setTimer()
+                            }
+                        }) {
+                            Image(systemName: self.timeManager.curHeight < maxHeight ? "chevron.forward" : "chevron.down")
+                                .resizable()
+                                .frame(width: self.timeManager.curHeight < maxHeight ? 10 : 15, height: self.timeManager.curHeight < maxHeight ? 15 : 10)
+                                .opacity(self.timeManager.intervalCount == self.timeManager.taskList.count - 1 || self.timeManager.taskList.count == 0 ? 0.1 : 1)
+                                .foregroundColor(.blue)
+                        }.softButtonStyle(Circle(), pressedEffect: .hard)
+                        
+//                        Button(action: {
+//                            if self.timeManager.intervalCount != self.timeManager.taskList.count - 1 || self.timeManager.taskList.count == 0 {
+//                                self.timeManager.intervalCount += 1
+//                                self.timeManager.setTimer()
+//                            }
+//                        }) {
+//                            VStack {
+//                                Image(systemName: self.timeManager.curHeight < maxHeight ? "chevron.forward.circle" : "chevron.down.circle")
+//                                    .resizable()
+//                                    .frame(width: 35, height: 35)
+//                                    .opacity(self.timeManager.intervalCount == self.timeManager.taskList.count - 1 || self.timeManager.taskList.count == 0 ? 0.1 : 1)
+//                            }
+//                            .frame(width: 70, height: 65)
+//                        }
+//                        .cornerRadius(10)
+                    }
+                    
+                    if UIDevice.current.orientation.isPortrait && UIDevice.current.userInterfaceIdiom == .pad {
+                        ButtonsView()
+                    } else {
+                        ButtonsView()
+                    }
+                }
+                .frame(height: 90)
+                .frame(maxWidth: .infinity)
+                    IntervalListView()
+                
                 }
                 .frame(maxWidth: .infinity)
                 .frame(height: timeManager.curHeight)
                 .background(
                     ZStack {
+//                        RoundedRectangle(cornerRadius: 20).fill(Color.Neumorphic.main).softOuterShadow()
+                        
                         RoundedRectangle(cornerRadius: 20)
-                            .shadow(color: Color(UIColor.gray).opacity(0.5), radius: 3, x: 0, y: -0.5)
+                            .shadow(color: Color(UIColor.black).opacity(0.2), radius: 3, x: 0, y: -0.5)
                         //                    Rectangle()
                         //                        .frame(height: 40)
                         //                        .ignoresSafeArea()

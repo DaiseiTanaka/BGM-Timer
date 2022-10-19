@@ -36,6 +36,7 @@
 		35645B9B28DF0BDF003D3556 /* MyListDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35645B9A28DF0BDF003D3556 /* MyListDetailView.swift */; };
 		35645B9D28E19CF7003D3556 /* CardViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35645B9C28E19CF7003D3556 /* CardViewTest.swift */; };
 		35B4EEFB28C8EA2600648224 /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 35B4EEFA28C8EA2600648224 /* PartialSheet */; };
+		35BD95DB28FED5D400139EC1 /* Neumorphic in Frameworks */ = {isa = PBXBuildFile; productRef = 35BD95DA28FED5D400139EC1 /* Neumorphic */; };
 		35BFFE7928E4885000153EBF /* Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BFFE7828E4885000153EBF /* Scale.swift */; };
 		35CE63C628F9653F0045D7F9 /* StopWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CE63C528F9653F0045D7F9 /* StopWatch.swift */; };
 		35E0B29B28F45BED0011F019 /* WorkThroughAdgendaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E0B29A28F45BED0011F019 /* WorkThroughAdgendaView.swift */; };
@@ -93,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35BD95DB28FED5D400139EC1 /* Neumorphic in Frameworks */,
 				35B4EEFB28C8EA2600648224 /* PartialSheet in Frameworks */,
 				354E704B28C8D46B001EE49F /* ResizableSheet in Frameworks */,
 				3421FBDDC875768FCDDD117B /* Pods_Interval_Timer.framework in Frameworks */,
@@ -248,6 +250,7 @@
 			packageProductDependencies = (
 				354E704A28C8D46B001EE49F /* ResizableSheet */,
 				35B4EEFA28C8EA2600648224 /* PartialSheet */,
+				35BD95DA28FED5D400139EC1 /* Neumorphic */,
 			);
 			productName = Interval_Timer;
 			productReference = 354E702428C8CAF7001EE49F /* Interval_Timer.app */;
@@ -280,6 +283,7 @@
 			packageReferences = (
 				354E704928C8D46B001EE49F /* XCRemoteSwiftPackageReference "ResizableSheet" */,
 				35B4EEF928C8EA2600648224 /* XCRemoteSwiftPackageReference "PartialSheet" */,
+				35BD95D928FED5D400139EC1 /* XCRemoteSwiftPackageReference "neumorphic" */,
 			);
 			productRefGroup = 354E702528C8CAF7001EE49F /* Products */;
 			projectDirPath = "";
@@ -508,7 +512,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.9.3;
+				CURRENT_PROJECT_VERSION = 1.9.4;
 				DEVELOPMENT_ASSET_PATHS = "\"Interval_Timer/Preview Content\"";
 				DEVELOPMENT_TEAM = NZ6NQZK56A;
 				ENABLE_PREVIEWS = YES;
@@ -525,7 +529,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.9.3;
+				MARKETING_VERSION = 1.9.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "akikomi-project.mindfulness-timer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -544,7 +548,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.9.3;
+				CURRENT_PROJECT_VERSION = 1.9.4;
 				DEVELOPMENT_ASSET_PATHS = "\"Interval_Timer/Preview Content\"";
 				DEVELOPMENT_TEAM = NZ6NQZK56A;
 				ENABLE_PREVIEWS = YES;
@@ -561,7 +565,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.9.3;
+				MARKETING_VERSION = 1.9.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "akikomi-project.mindfulness-timer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -614,6 +618,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		35BD95D928FED5D400139EC1 /* XCRemoteSwiftPackageReference "neumorphic" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/costachung/neumorphic/";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -626,6 +638,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 35B4EEF928C8EA2600648224 /* XCRemoteSwiftPackageReference "PartialSheet" */;
 			productName = PartialSheet;
+		};
+		35BD95DA28FED5D400139EC1 /* Neumorphic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 35BD95D928FED5D400139EC1 /* XCRemoteSwiftPackageReference "neumorphic" */;
+			productName = Neumorphic;
 		};
 /* End XCSwiftPackageProductDependency section */
 

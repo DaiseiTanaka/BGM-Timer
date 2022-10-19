@@ -7,6 +7,7 @@
 
 import SwiftUI
 import AudioToolbox
+import Neumorphic
 
 
 struct IntervalListView: View, InputViewDelegate, EditViewDelegate, AddDetailToListDelegate {
@@ -44,7 +45,10 @@ struct IntervalListView: View, InputViewDelegate, EditViewDelegate, AddDetailToL
     //@Environment(\.editMode) var editMode
     @State var refresh = UUID()
     
-
+    init () {
+        UITableView.appearance().backgroundColor = UIColor.systemGray6
+    }
+    
     var body: some View {
         NavigationView {
             GeometryReader { geometry in
@@ -56,11 +60,12 @@ struct IntervalListView: View, InputViewDelegate, EditViewDelegate, AddDetailToL
                                 .padding(.top, 45)
                                 .opacity(CGFloat(1-(maxHeight-self.timeManager.curHeight)/(maxHeight-middleHeight-200)))
                                 .animation(.easeInOut, value: self.timeManager.curHeight)
+                            //listNameTextField
                             timeScheduleList
+
                         } else {
                             timeScheduleListMiddle
                         }
-                        
 
                         Spacer()
                     }
@@ -86,7 +91,7 @@ struct IntervalListView: View, InputViewDelegate, EditViewDelegate, AddDetailToL
                         plusButton
                             .opacity(CGFloat(1-(maxHeight-self.timeManager.curHeight)/(maxHeight-middleHeight)))
                     }
-
+                    
                     MyListView()
                         .frame(width: UIScreen.main.bounds.width * 0.7, height: UIScreen.main.bounds.height * 0.7)
                         .onAppear(perform: {
@@ -133,6 +138,25 @@ struct IntervalListView: View, InputViewDelegate, EditViewDelegate, AddDetailToL
             //.navigationTitle(self.timeManager.curHeight > middleHeight ? "Interval Schedule" : "")
             .navigationTitle("Interval Schedule")
             .navigationBarTitleDisplayMode(.inline)
+//            .toolbar {
+//                ToolbarItem(placement: .navigationBarLeading) {
+//                    Menu(content: {
+//                        ForEach(Array(timeManager.intervalList.enumerated()), id: \.offset) { index, list in
+//                            Button(action: {
+//                                self.timeManager.pageIndex = index
+//                            }, label: {
+//                                Text(list.listName)
+//                                    .font(.footnote)
+//                                    .frame(maxWidth: viewWidth*0.4)
+//                                    .lineLimit(1)
+//                            })
+//                            .background(self.timeManager.pageIndex == index && self.timeManager.intervalList.count > 1 ? Color(UIColor.systemGray3) : Color(UIColor.systemBackground))
+//                        }
+//                    }, label: {
+//                        Image(systemName: "list.bullet")
+//                    })
+//                }
+//            }
 
         }
         .navigationViewStyle(.stack)
@@ -267,10 +291,135 @@ struct IntervalListView: View, InputViewDelegate, EditViewDelegate, AddDetailToL
         .background(Color(UIColor.secondarySystemFill))
     }
     
+    var timeScheduleListMiddle2: some View {
+        TabView(selection: $timeManager.pageIndex) {
+            
+            ZStack {
+                RoundedRectangle(cornerRadius: 20).fill(Color(UIColor.systemGray6)).softOuterShadow()
+                
+                List {
+                    Text("Hello")
+                        .listRowBackground(Color(UIColor.systemGray6))
+                    Text("Hello")
+                        .listRowBackground(Color(UIColor.systemGray6))
+                    Text("Hello")
+                        .listRowBackground(Color(UIColor.systemGray6))
+                    Text("Hello")
+                        .listRowBackground(Color(UIColor.systemGray6))
+                }
+                .listStyle(.inset)
+                .cornerRadius(20)
+                //.background(Color(UIColor.systemGray6))
+
+                //.padding()
+            }
+            //.cornerRadius(20)
+            .padding()
+            
+        }
+        .frame(height: middleHeight - 90)
+        .background(Color(UIColor.systemGray6))
+        .navigationBarHidden(true)
+        .tabViewStyle(.page)
+        .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
+//        TabView(selection: $timeManager.pageIndex) {
+//            ForEach(Array(self.timeManager.intervalList.enumerated()), id: \.offset) { myListIndex, tasks in
+//                ZStack {
+//                    List {
+//                        if self.timeManager.timerStatus != .stopped && self.timeManager.timeSumDuration > 0.1 {
+//                            nowState
+//                        }
+//                            ForEach(Array(self.timeManager.intervalList[myListIndex].taskList.enumerated()), id: \.offset) { index, task in
+//                                HStack {
+//    //                                Text("\(index + 1): ")
+//    //                                    .font(.subheadline)
+//    //                                    .frame(alignment: .leading)
+//    //                                    .frame(minWidth: 7)
+//                                    Text(task)
+//                                        .font(.footnote)
+//                                        .frame(width: 70)
+//                                    Spacer()
+//                                    VStack {
+//                                        HStack {
+//                                            if self.timeManager.intervalList[myListIndex].bgmNameList[index] != "Mute" {
+//                                                Image(systemName: "speaker.2.fill")
+//                                                    .font(.footnote)
+//                                            } else {
+//                                                Image(systemName: "speaker.slash.fill")
+//                                                    .font(.footnote)
+//                                            }
+//                                            Text("\(self.timeManager.intervalList[myListIndex].bgmNameList[index])")
+//                                                .font(.footnote)
+//                                            Spacer()
+//                                        }
+//                                        HStack {
+//                                            if self.timeManager.intervalList[myListIndex].alarmIDList[index] != 0 {
+//                                                Image(systemName: "bell.fill")
+//                                                    .font(.footnote)
+//                                            } else {
+//                                                Image(systemName: "bell.slash.fill")
+//                                                    .font(.footnote)
+//                                            }
+//                                            Text("\(self.timeManager.alarms.first(where: { $0.id == timeManager.intervalList[myListIndex].alarmIDList[index] })!.soundName)")
+//                                                .font(.footnote)
+//                                            Spacer()
+//                                        }
+//                                    }
+//                                    .frame(minWidth: 95)
+//
+//                                    if self.timeManager.intervalList[myListIndex].taskList.firstIndex(of: task) != nil {
+//                                        Text(String(format: "%02d:%02d", self.timeManager.intervalList[myListIndex].minList[index], self.timeManager.intervalList[myListIndex].secList[index]))
+//                                            .font(Font(UIFont.monospacedDigitSystemFont(ofSize: 16, weight: .regular)))
+//                                    }
+//                                }
+//                                .frame(height: 29)
+//                                .contentShape(Rectangle())
+//                                .tag(myListIndex)
+//                                .listRowBackground(self.timeManager.intervalCount == index && self.timeManager.intervalList[self.timeManager.pageIndex].taskList.count > 1 ? Color(UIColor.systemGray3) : Color(UIColor.systemBackground))
+//                            }
+//                    }
+//                    .listStyle(.inset)
+//                    .navigationBarItems(trailing: self.timeManager.curHeight == maxHeight ? EditButton() : nil)
+//                    .onAppear {
+//                        print("Card is changed Appear")
+//                        //self.timeManager.setTimer()
+//                    }
+//                    .onDisappear {
+//                        print("Card is changed Disappear")
+//                        if self.timeManager.pageIndex != self.timeManager.prevMyListAppearingIndex {
+//                            let impactHeavy = UIImpactFeedbackGenerator(style: .medium)
+//                            impactHeavy.impactOccurred()
+//                            self.timeManager.reset()
+//                            self.timeManager.setTimer()
+//                        }
+//                        if self.timeManager.curHeight != minHeight {
+//                            self.timeManager.prevMyListAppearingIndex = self.timeManager.pageIndex
+//                        }
+//                        self.timeManager.prevMyListAppearingIndex = self.timeManager.pageIndex
+//                    }
+//
+//                    }
+//                    .shadow(color: .white, radius: 2, x: -3, y: -3)
+//                    .shadow(color: .black, radius: 2, x: 3, y: 3)
+//                    .cornerRadius(16)
+//                    .padding()
+//            }
+//
+//        }
+//        .navigationBarHidden(true)
+//        .tabViewStyle(.page)
+//        .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
+//        .frame(width: UIScreen.main.bounds.width, height: middleHeight - 90 )
+//        .background(Color(UIColor.white))
+//        //.background(Color(UIColor.secondarySystemFill))
+
+    }
+
+    
     var timeScheduleList: some View {
         TabView(selection: $timeManager.pageIndex) {
             ForEach(Array(self.timeManager.intervalList.enumerated()), id: \.offset) { myListIndex, tasks in
-                Form {
+                List {
                     if self.timeManager.timerStatus != .stopped && self.timeManager.timeSumDuration > 0.1 {
                         nowState
                     }
@@ -294,50 +443,70 @@ struct IntervalListView: View, InputViewDelegate, EditViewDelegate, AddDetailToL
 //                                    .frame(alignment: .leading)
 //                                    .frame(minWidth: 7)
                                 Text(task)
-                                    .font(.footnote)
-                                    .frame(width: 70)
+                                    .font(.subheadline)
+                                    .frame(width: 90)
                                 Spacer()
                                 if !self.editMode.isEditing {
                                     VStack {
                                         HStack {
                                             if self.timeManager.intervalList[myListIndex].bgmNameList[index] != "Mute" {
                                                 Image(systemName: "speaker.2.fill")
-                                                    .font(.footnote)
+//                                                    .font(.footnote)
                                             } else {
                                                 Image(systemName: "speaker.slash.fill")
-                                                    .font(.footnote)
+                                                    //.font(.footnote)
                                             }
                                             Text("\(self.timeManager.intervalList[myListIndex].bgmNameList[index])")
-                                                .font(.footnote)
+                                                //.font(.footnote)
                                             Spacer()
                                         }
                                         HStack {
                                             if self.timeManager.intervalList[myListIndex].alarmIDList[index] != 0 {
                                                 Image(systemName: "bell.fill")
-                                                    .font(.footnote)
+                                                    //.font(.footnote)
                                             } else {
                                                 Image(systemName: "bell.slash.fill")
-                                                    .font(.footnote)
+                                                    //.font(.footnote)
                                             }
                                             Text("\(self.timeManager.alarms.first(where: { $0.id == timeManager.intervalList[myListIndex].alarmIDList[index] })!.soundName)")
-                                                .font(.footnote)
+                                                //.font(.footnote)
                                             Spacer()
                                         }
                                     }
+                                    .font(.footnote)
                                     .frame(minWidth: 95)
                                 }
                                 
                                 if self.timeManager.intervalList[myListIndex].taskList.firstIndex(of: task) != nil {
                                     Text(String(format: "%02d:%02d", self.timeManager.intervalList[myListIndex].minList[index], self.timeManager.intervalList[myListIndex].secList[index]))
-                                        .font(Font(UIFont.monospacedDigitSystemFont(ofSize: 16, weight: .regular)))  // 等間隔表示
+                                        .font(Font(UIFont.monospacedDigitSystemFont(ofSize: 18, weight: .regular)))  // 等間隔表示
+                                        .opacity(0.5)
                                 }
                                 
+                                //Image(systemName: "ellipsis")
+//                                Menu {
+//                                    VStack {
+//                                        Button("Cancel", action: {})
+//                                        Button("Search", action: {})
+//                                        Button("Add", action: {})
+//                                    }
+//                                    .shadow(color: Color(UIColor.black).opacity(0.5), radius: 3, x: 0, y: -0.5)
+//                                } label: {
+//                                    Button(action: {
+//
+//                                    }, label: {
+//                                        Image(systemName: "ellipsis")
+//                                    })
+//                                    //Label("Create", systemImage: "plus.circle")
+//                                }
+//                                .buttonStyle(PlainButtonStyle())
+
                             }
                             //.id(UUID())
                             .frame(height: 29)
                             .contentShape(Rectangle())
                             .tag(myListIndex)
-                            .listRowBackground(self.timeManager.intervalCount == index && self.timeManager.intervalList[self.timeManager.pageIndex].taskList.count > 1 && !self.editMode.isEditing ? Color(UIColor.systemGray3) : Color(UIColor.systemBackground))
+                            .listRowBackground(self.timeManager.intervalCount == index && self.timeManager.intervalList[self.timeManager.pageIndex].taskList.count > 1 && !self.editMode.isEditing ? Color(UIColor.systemGray4) : Color(UIColor.systemBackground))
                             .onTapGesture{
                                 if isActive == false && self.timeManager.curHeight == maxHeight {
                                     print(self.timeManager.intervalList[self.timeManager.pageIndex].taskList)
@@ -399,6 +568,7 @@ struct IntervalListView: View, InputViewDelegate, EditViewDelegate, AddDetailToL
                     }
                 }
 //                .id(refresh)
+                //.listStyle(.inset)
                 .environment(\.editMode, self.$editMode)
                 .onAppear {
                     print("Card is changed Appear")
@@ -423,6 +593,8 @@ struct IntervalListView: View, InputViewDelegate, EditViewDelegate, AddDetailToL
         .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
         //.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.78 ) // segment追加前
         .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.68 ) // segment追加後
+        //.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.59 ) // new TextField 追加後
+
 //        .frame(width: viewWidth, height: self.timeManager.curHeight > 100 ? self.timeManager.curHeight - 100 : 0)
         //.background(Color(UIColor.secondarySystemFill))
         
@@ -458,7 +630,9 @@ struct IntervalListView: View, InputViewDelegate, EditViewDelegate, AddDetailToL
                 }) {
                     Image(systemName: "plus.circle.fill")
                         .font(.system(size: 40))
-                        .shadow(color: Color(UIColor.systemGray), radius: 3, x: 3, y: 3)
+                        //.shadow(color: Color(UIColor.systemGray), radius: 3, x: 3, y: 3)
+                        .shadow(color: .black.opacity(0.4), radius: 5, x: 3, y: 3)
+                        .shadow(color: .white.opacity(0.4), radius: 5, x: -3, y: -3)
                         .opacity(self.timeManager.timerStatus != .running ? 0.75 : 0)
                 }
                 .sheet(isPresented: self.$showAddView) {
@@ -471,35 +645,72 @@ struct IntervalListView: View, InputViewDelegate, EditViewDelegate, AddDetailToL
     }
     
     var listNameTextField: some View {
-//        Section(
-//            header:
-//                HStack {
-//                    Text("This list Name:")
-//                    Spacer()
-//                }
-//        ) {
-            TextField("This list Name", text: self.$timeManager.intervalList[self.timeManager.pageIndex].listName,
-                      onEditingChanged: { begin in
-                /// 入力開始処理
-                if begin {
-                    self.editting = true    // 編集フラグをオン
-                    /// 入力終了処理
-                } else {
-                    self.editting = false   // 編集フラグをオフ
-                    
-                }
-            },onCommit: {
-                self.timeManager.setTimer()
-                saveIntervalList(intervalList: self.timeManager.intervalList)
-            })
-            .textFieldStyle(RoundedBorderTextFieldStyle()) // 入力域を枠で囲む
-            .shadow(color: editting ? .blue : .clear, radius: 3)
-            .onChange(of: self.timeManager.intervalList[self.timeManager.pageIndex].listName) { _ in
-                saveIntervalList(intervalList: self.timeManager.intervalList)
+        TextField("This list Name", text: self.$timeManager.intervalList[self.timeManager.pageIndex].listName,
+                  onEditingChanged: { begin in
+            /// 入力開始処理
+            if begin {
+                self.editting = true    // 編集フラグをオン
+                /// 入力終了処理
+            } else {
+                self.editting = false   // 編集フラグをオフ
+                
             }
-            .focused($isActive)
-            .frame(width: UIScreen.main.bounds.width - 45, height: 29)
-        //}
+        },onCommit: {
+            self.timeManager.setTimer()
+            saveIntervalList(intervalList: self.timeManager.intervalList)
+        })
+        .textFieldStyle(RoundedBorderTextFieldStyle()) // 入力域を枠で囲む
+        .shadow(color: editting ? .blue : .clear, radius: 5)
+        .onChange(of: self.timeManager.intervalList[self.timeManager.pageIndex].listName) { _ in
+            saveIntervalList(intervalList: self.timeManager.intervalList)
+        }
+        .focused($isActive)
+        .frame(width: UIScreen.main.bounds.width - 45, height: 29)
+    }
+    
+    var listNameTextField2: some View {
+        VStack {
+          HStack {
+            Image(systemName:"pencil")
+                  .foregroundColor(isActive ? Color.blue : Color(UIColor.darkGray))
+             .font(Font.body.weight(.bold))
+             .onTapGesture {
+                 isActive.toggle()
+             }
+                            
+              TextField("This list Name", text: self.$timeManager.intervalList[self.timeManager.pageIndex].listName,
+                        onEditingChanged: { begin in
+                  /// 入力開始処理
+                  if begin {
+                      self.editting = true    // 編集フラグをオン
+                      /// 入力終了処理
+                  } else {
+                      self.editting = false   // 編集フラグをオフ
+                      
+                  }
+              },onCommit: {
+                  self.timeManager.setTimer()
+                  saveIntervalList(intervalList: self.timeManager.intervalList)
+              })
+              //.textFieldStyle(RoundedBorderTextFieldStyle()) // 入力域を枠で囲む
+              //.shadow(color: editting ? .blue : .clear, radius: 3)
+              .onChange(of: self.timeManager.intervalList[self.timeManager.pageIndex].listName) { _ in
+                  saveIntervalList(intervalList: self.timeManager.intervalList)
+              }
+              .focused($isActive)
+              .frame(height: 29)
+          }
+          .padding(.horizontal)
+          .padding(.vertical, 10)
+          .background(
+             RoundedRectangle(cornerRadius: 30)
+                .fill(Color(UIColor.systemGray6))
+              .softInnerShadow(RoundedRectangle(cornerRadius: 30), darkShadow: .gray, lightShadow: .white, spread: 0.05, radius: 2)
+           )
+        }
+        .padding(.horizontal)
+        .padding(.top, 10)
+        
     }
     
     var downButton: some View {
@@ -577,6 +788,22 @@ struct IntervalListView: View, InputViewDelegate, EditViewDelegate, AddDetailToL
         saveIntervalList(intervalList: self.timeManager.intervalList)
         self.timeManager.setTimer()
     }
+    
+    func addListFirst() {
+        self.timeManager.intervalList.append(contentsOf: [IntervalList(listName: "My List \(self.timeManager.intervalList.count)", taskList: ["Timer1"], bgmNameList: ["Mute"], alarmIDList: [0], timeList: [90], minList: [1], secList: [30])])
+        self.timeManager.myListNameList = returnMyListName()
+        saveIntervalList(intervalList: timeManager.intervalList)
+        self.timeManager.setTimer()
+    }
+
+    func returnMyListName() -> [String] {
+        var myList: [String] = []
+        for num in 0..<self.timeManager.intervalList.count {
+            myList.append(self.timeManager.intervalList[num].listName)
+        }
+        return myList
+    }
+
     
     func moveRow(from source: IndexSet, to destination: Int) {
         self.timeManager.intervalList[self.timeManager.pageIndex].taskList.move(fromOffsets: source, toOffset: destination)

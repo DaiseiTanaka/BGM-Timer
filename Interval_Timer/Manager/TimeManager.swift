@@ -83,7 +83,9 @@ class TimeManager: ObservableObject {
     
     @Published var listName: String = "Test"
     
+    // Side menu
     @Published var sideMenuOffset: CGFloat = 0
+    //@Published var sideMenuFlag: Bool = false
     
     @Published var myListNameList: [String] = []
     
