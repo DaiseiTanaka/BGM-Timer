@@ -55,7 +55,7 @@ struct EditView: View {
                         NavigationLink(destination: SoundListView()) {
                             HStack {
                                 //設定項目名
-                                Text("BGM")
+                                Label("BGM", systemImage: "speaker.wave.3.fill").labelStyle(ColorfulIconLabelStyle(color: .green))
                                 
                                 Spacer()
                                 //現在選択中のアラーム音
@@ -74,7 +74,7 @@ struct EditView: View {
                         NavigationLink(destination: FinalSoundListView()) {
                             HStack {
                                 //設定項目名
-                                Text("Alarm")
+                                Label("Alarm", systemImage: "alarm.fill").labelStyle(ColorfulIconLabelStyle(color: .red))
                                 
                                 Spacer()
                                 //現在選択中のアラーム音

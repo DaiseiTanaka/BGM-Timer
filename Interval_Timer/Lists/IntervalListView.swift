@@ -47,6 +47,7 @@ struct IntervalListView: View, InputViewDelegate, EditViewDelegate, AddDetailToL
     
     init () {
         UITableView.appearance().backgroundColor = UIColor.systemGray6
+        //UITableView.appearance().isScrollEnabled = false
     }
     
     var body: some View {

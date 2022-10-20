@@ -52,7 +52,7 @@ struct InputView: View {
                         NavigationLink(destination: SoundListView()) {
                             HStack {
                                 //設定項目名
-                                Text("BGM")
+                                Label("BGM", systemImage: "speaker.wave.3.fill").labelStyle(ColorfulIconLabelStyle(color: .green))
                                 
                                 Spacer()
                                 //現在選択中のアラーム音
@@ -71,8 +71,8 @@ struct InputView: View {
                         NavigationLink(destination: FinalSoundListView()) {
                             HStack {
                                 //設定項目名
-                                Text("Alarm")
-                                
+                                Label("Alarm", systemImage: "alarm.fill").labelStyle(ColorfulIconLabelStyle(color: .red))
+
                                 Spacer()
                                 //現在選択中のアラーム音
                                 Text("\(timeManager.alarmName)")
@@ -169,6 +169,21 @@ struct InputView: View {
                     .font(.headline)
             }
             .padding(.horizontal)
+        }
+    }
+}
+
+struct ColorfulIconLabelStyle: LabelStyle {
+    var color: Color
+    
+    func makeBody(configuration: Configuration) -> some View {
+        Label {
+            configuration.title
+        } icon: {
+            configuration.icon
+                .font(.system(size: 17))
+                .foregroundColor(.white)
+                .background(RoundedRectangle(cornerRadius: 7).frame(width: 28, height: 28).foregroundColor(color))
         }
     }
 }
