@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import Neumorphic
+
 
 struct ProgressBarView: View {
     @EnvironmentObject var timeManager: TimeManager
@@ -58,6 +60,7 @@ struct ProgressBarView: View {
                     .padding(15)
                     .opacity(0.37)
                     .animation(.easeInOut(duration: 0.20), value: self.timeManager.intervalCount)
+                    .animation(.easeInOut(duration: 0.20), value: self.timeManager.pageIndex)
             }
         }
         //毎0.05秒ごとに発動

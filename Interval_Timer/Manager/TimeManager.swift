@@ -83,6 +83,8 @@ class TimeManager: ObservableObject {
     
     @Published var listName: String = "Test"
     
+    @Published var showMyListView: Bool = false
+    
     // Side menu
     @Published var sideMenuOffset: CGFloat = 0
     //@Published var sideMenuFlag: Bool = false
@@ -95,11 +97,20 @@ class TimeManager: ObservableObject {
     @Published var workThroughPageIndex: Int = 0
     
     
-    @Published var sounds: [Sound] = [
+    //@Published var showHalfModalView: Bool = false
+    
+    @Published var noises: [Sound] = [
         Sound(id:    0, soundName: "Mute"),
         Sound(id:    1, soundName: "Buzzer"),
         Sound(id:    2, soundName: "country"),
         Sound(id:    3, soundName: "morning"),
+        Sound(id:    18, soundName: "rain1"),
+        Sound(id:    19, soundName: "rain2"),
+        Sound(id:    20, soundName: "cafe_noise"),
+        Sound(id:    21, soundName: "train"),
+    ]
+    
+    @Published var bgms: [Sound] = [
         Sound(id:    4, soundName: "BGM-099"),
         Sound(id:    5, soundName: "BGM-100"),
         Sound(id:    6, soundName: "BGM-108"),
@@ -114,12 +125,34 @@ class TimeManager: ObservableObject {
         Sound(id:    15, soundName: "BGM-146"),
         Sound(id:    16, soundName: "BGM-147"),
         Sound(id:    17, soundName: "BGM-151"),
-        Sound(id:    18, soundName: "rain1"),
-        Sound(id:    19, soundName: "rain2"),
-        Sound(id:    20, soundName: "cafe_noise"),
-        Sound(id:    21, soundName: "train"),
         Sound(id:    22, soundName: "rock_guitar")
     ]
+    
+    @Published var sounds: [Sound] = [
+           Sound(id:    0, soundName: "Mute"),
+           Sound(id:    1, soundName: "Buzzer"),
+           Sound(id:    2, soundName: "country"),
+           Sound(id:    3, soundName: "morning"),
+           Sound(id:    4, soundName: "BGM-099"),
+           Sound(id:    5, soundName: "BGM-100"),
+           Sound(id:    6, soundName: "BGM-108"),
+           Sound(id:    7, soundName: "BGM-115"),
+           Sound(id:    8, soundName: "BGM-124"),
+           Sound(id:    9, soundName: "BGM-136"),
+           Sound(id:    10, soundName: "BGM-138"),
+           Sound(id:    11, soundName: "BGM-140"),
+           Sound(id:    12, soundName: "BGM-142"),
+           Sound(id:    13, soundName: "BGM-143"),
+           Sound(id:    14, soundName: "BGM-145"),
+           Sound(id:    15, soundName: "BGM-146"),
+           Sound(id:    16, soundName: "BGM-147"),
+           Sound(id:    17, soundName: "BGM-151"),
+           Sound(id:    18, soundName: "rain1"),
+           Sound(id:    19, soundName: "rain2"),
+           Sound(id:    20, soundName: "cafe_noise"),
+           Sound(id:    21, soundName: "train"),
+           Sound(id:    22, soundName: "rock_guitar")
+       ]
     
     @Published var alarms: [Sound] = [
         Sound(id:    0, soundName: "Mute"),
@@ -259,7 +292,7 @@ class TimeManager: ObservableObject {
             print("=== IntervalList Debug Called!\n \(intervalList[self.pageIndex])")
         }
         self.myListNameList = returnMyListName()
-        
+
         self.taskList = self.intervalList[self.pageIndex].taskList
         self.timeList = self.intervalList[self.pageIndex].timeList
         self.soundList = self.intervalList[self.pageIndex].bgmNameList

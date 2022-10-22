@@ -6,6 +6,8 @@
 	<string>ca-app-pub-2399448924069960/1723471864</string>
 	<key>GADIsAdManagerApp</key>
 	<true/>
+	<key>SKAdNetworkIdentifier</key>
+	<string>cstr6suwn9.skadnetwork</string>
 	<key>SKAdNetworkItems</key>
 	<array>
 		<dict>

@@ -12,6 +12,7 @@ import AVFoundation
 import FloatingPanel
 import ResizableSheet
 import UserNotifications
+import Neumorphic
 
 
 struct ContentView: View {    
@@ -19,9 +20,10 @@ struct ContentView: View {
     //@EnvironmentObject var detecter: OrientationDetector
     @State var viewHeight: CGFloat = UIScreen.main.bounds.height
     @State var viewWidth: CGFloat = UIScreen.main.bounds.width
-    
+    @Environment(\.colorScheme) var colorScheme  //ダークモードかライトモードか検出
+
     @Environment(\.scenePhase) private var scenePhase  // アプリが閉じた時と開いた時を検知
-    
+    @EnvironmentObject var sceneDelegate: SceneDelegate
     //@EnvironmentObject var notificationModel: NotificationModel  // 通知
     
     @State private var showModal = false
@@ -57,7 +59,7 @@ struct ContentView: View {
     
     //@Environment(\.scenePhase) var scenePhase
     @State var refreshID = UUID()
-    
+        
     private func playExplosion(){
         explosion.stop()
         explosion.currentTime = 0.0
@@ -77,63 +79,101 @@ struct ContentView: View {
         GeometryReader { _ in
             
             ZStack {
-                if UIDevice.current.userInterfaceIdiom == .phone {
-                    if self.timeManager.show != true {
-                        titlePhone
-                            .offset(x: 0, y: -viewHeight * 0.38 - 80*returnAnimationMinToMiddleHeight())
+                //if sceneDelegate.interfaceOrientation == .portrait {
+                    if UIDevice.current.userInterfaceIdiom == .phone {
+                        if self.timeManager.show != true {
+                            titlePhone
+                                .offset(x: 0, y: -viewHeight * 0.38 - 80*returnAnimationMinToMiddleHeight())
+                                .animation(.easeOut, value: self.timeManager.curHeight)
+                        }
                     }
-                }
-                else if UIDevice.current.userInterfaceIdiom == .pad {
-                    if self.timeManager.show != true {
-                        titlePad
+                    else if UIDevice.current.userInterfaceIdiom == .pad {
+                        if self.timeManager.show != true {
+                            titlePad
+                        }
                     }
-                }
-                
-                if timeManager.isProgressBarOn {
-                    ProgressBarView()
-                        .offset(y: self.timeManager.curHeight <= middleHeight ? -animationHeight*returnAnimationMinToMiddleHeight() : -animationHeight)
-                }
-                
-                if timeManager.timerStatus == .stopped {
-                    if self.timeManager.show == true {
-                        TimeOverView()
+                    
+                    if timeManager.isProgressBarOn {
+                        ProgressBarView()
                             .offset(y: self.timeManager.curHeight <= middleHeight ? -animationHeight*returnAnimationMinToMiddleHeight() : -animationHeight)
-                            .onAppear {
-                                print("time over view opend")
-                            }
-                            .onDisappear {
-                                print("time over view closed")
-                            }
+                            .animation(.easeOut, value: self.timeManager.curHeight)
+                    }
+                    
+                    if timeManager.timerStatus == .stopped {
+                        if self.timeManager.show == true {
+                            TimeOverView()
+                                .offset(y: self.timeManager.curHeight <= middleHeight ? -animationHeight*returnAnimationMinToMiddleHeight() : -animationHeight)
+                                .animation(.easeOut, value: self.timeManager.curHeight)
+                        } else {
+                            TimerView()
+                                .offset(y: self.timeManager.curHeight <= middleHeight ? -animationHeight*returnAnimationMinToMiddleHeight() : -animationHeight)
+                                .animation(.easeOut, value: self.timeManager.curHeight)
+                                .animation(.easeInOut, value: self.timeManager.intervalCount)
+                                .animation(.easeInOut, value: self.timeManager.pageIndex)
+                        }
                     } else {
                         TimerView()
                             .offset(y: self.timeManager.curHeight <= middleHeight ? -animationHeight*returnAnimationMinToMiddleHeight() : -animationHeight)
+                            .animation(.easeOut, value: self.timeManager.curHeight)
+                            .animation(.easeInOut, value: self.timeManager.intervalCount)
+                            .animation(.easeInOut, value: self.timeManager.pageIndex)
                     }
-                } else {
-                    TimerView()
-                        .offset(y: self.timeManager.curHeight <= middleHeight ? -animationHeight*returnAnimationMinToMiddleHeight() : -animationHeight)
-                }
-                
-                VStack {
-                    Spacer()
-                    BannerView()
-                        .frame(height: 60)
-                }
-                .padding(.bottom, 110)
-                
-                VStack {
-                    Spacer()
-                    BannerView()
-                        .frame(height: 60)
-                }
+                    
+//                    VStack {
+//                        Spacer()
+//                        BannerView()
+//                            .frame(height: 60)
+//                    }
+//                    .padding(.bottom, 110)
+//
+//                    VStack {
+//                        Spacer()
+//                        BannerView()
+//                            .frame(height: 60)
+//                    }
 
-                ModalView(isShowing: $timeManager.isSetting)
+                    ModalView(isShowing: $timeManager.isSetting)
+
+//                } else {
+//                    if timeManager.isProgressBarOn {
+//                        ProgressBarView()
+//                            .offset(y: self.timeManager.curHeight <= middleHeight ? -animationHeight*returnAnimationMinToMiddleHeight() : -animationHeight)
+//                            .animation(.easeOut, value: self.timeManager.curHeight)
+//                    }
+//
+//                    if timeManager.timerStatus == .stopped {
+//                        if self.timeManager.show == true {
+//                            TimeOverView()
+//                                .offset(y: self.timeManager.curHeight <= middleHeight ? -animationHeight*returnAnimationMinToMiddleHeight() : -animationHeight)
+//                                .animation(.easeOut, value: self.timeManager.curHeight)
+//                        } else {
+//                            TimerView()
+//                                .offset(y: self.timeManager.curHeight <= middleHeight ? -animationHeight*returnAnimationMinToMiddleHeight() : -animationHeight)
+//                                .animation(.easeOut, value: self.timeManager.curHeight)
+//                                .animation(.easeInOut, value: self.timeManager.intervalCount)
+//                                .animation(.easeInOut, value: self.timeManager.pageIndex)
+//                        }
+//                    } else {
+//                        TimerView()
+//                            .offset(y: self.timeManager.curHeight <= middleHeight ? -animationHeight*returnAnimationMinToMiddleHeight() : -animationHeight)
+//                            .animation(.easeOut, value: self.timeManager.curHeight)
+//                            .animation(.easeInOut, value: self.timeManager.intervalCount)
+//                            .animation(.easeInOut, value: self.timeManager.pageIndex)
+//                    }
+//                }
+                
                 
             }
             //MARK: - Animation
-            .animation(.easeOut, value: self.timeManager.curHeight)
+            //.animation(.easeOut, value: self.timeManager.curHeight)
             .sheet (isPresented: self.$timeManager.showHintView) {
                 WorkThroughAdgendaView()
             }
+//            .fullScreenCover(isPresented: self.$timeManager.showMyListView) {
+//                MyListView()
+//                    .backgroundClearSheet()
+//                    .background(.ultraThinMaterial.opacity(0.6))
+//            }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             //.statusBar(hidden: true)
             .onAppear {
@@ -351,7 +391,7 @@ struct ContentView: View {
             }
             .opacity(self.timeManager.curHeight <= middleHeight ? CGFloat(1-returnAnimationMinToMiddleHeight()) : 0)
             
-            HStack {
+            HStack(spacing: 10) {
                 if self.timeManager.taskList.count != 0 {
                     Spacer()
                     if self.timeManager.timerStatus == .stopped && self.timeManager.timeSumDuration < 0.1 {
@@ -360,44 +400,53 @@ struct ContentView: View {
                             .foregroundColor(Color(UIColor.systemGray))
                             .fontWeight(.medium)
                     } else {
-                        if self.timeManager.curHeight >= middleHeight {
-                            Text("\(self.timeManager.taskList[self.timeManager.intervalCount]): ")  // Task name
-                                .font(.title2)
-                                .foregroundColor(Color(UIColor.systemGray))
-                                .fontWeight(.medium)
-                                .opacity(self.timeManager.curHeight <= middleHeight ? CGFloat(returnAnimationMinToMiddleHeight()) : 1)
-                                .frame(maxWidth: UIScreen.main.bounds.width * 0.3)
-                                .lineLimit(1)
-                            Spacer()
-
-                        }
+                        
                         // My list name
                         Text(String(self.timeManager.intervalList[self.timeManager.pageIndex].listName))
                             .font(.title2)
                             .foregroundColor(Color(UIColor.systemGray))
                             .fontWeight(.medium)
-                            .frame(maxWidth: UIScreen.main.bounds.width * 0.4)
+                            .frame(maxWidth: viewWidth * 0.4, alignment: .center)
                             .lineLimit(1)
+                            .padding(.trailing, self.timeManager.curHeight >= middleHeight ? 0 : 20)
+                            .padding(.leading, self.timeManager.curHeight < middleHeight ? 0 : 20)
                         
-                        Spacer()
-                        
-                        //ZStack {
-                        if self.timeManager.curHeight < middleHeight {
-                            //Spacer()
-                            Text(String(format: "%02d:%02d", self.timeManager.minList[self.timeManager.intervalCount], self.timeManager.secList[self.timeManager.intervalCount]))
+                        if self.timeManager.curHeight >= middleHeight {
+                            Text("\(self.timeManager.taskList[self.timeManager.intervalCount])")  // Task name
                                 .font(.title2)
                                 .foregroundColor(Color(UIColor.systemGray))
                                 .fontWeight(.medium)
-                                .opacity(self.timeManager.curHeight <= middleHeight ? CGFloat(1-returnAnimationMinToMiddleHeight()) : 0)
-                                //.animation(.easeInOut(duration: 0.15), value: self.timeManager.curHeight)
+                                .opacity(self.timeManager.curHeight <= middleHeight ? CGFloat(returnAnimationMinToMiddleHeight()) : 1)
+                                .frame(maxWidth: viewWidth * 0.4, alignment: .center)
+                                .padding(.trailing, 20)
+                                .lineLimit(1)
                         }
-                        //}
-                        Spacer()
-                        Text("\(self.timeManager.intervalCount + 1) / \(self.timeManager.taskList.count)")
-                            .font(.title2)
-                            .foregroundColor(Color(UIColor.systemGray))
-                            .fontWeight(.medium)
-                            .frame(maxWidth: UIScreen.main.bounds.width * 0.3)
+                        
+                        if self.timeManager.curHeight < middleHeight {
+                            HStack(alignment: .center) {
+                                Image(systemName: "timer")
+                                    .font(.title2)
+                                    .foregroundColor(Color(UIColor.systemGray))
+                                    .opacity(self.timeManager.curHeight <= middleHeight ? CGFloat(1-returnAnimationMinToMiddleHeight()) : 0)
+                                
+                                Text(String(format: "%02d:%02d", self.timeManager.minList[self.timeManager.intervalCount], self.timeManager.secList[self.timeManager.intervalCount]))
+                                    .font(.title2)
+                                    .foregroundColor(Color(UIColor.systemGray))
+                                    .fontWeight(.medium)
+                                    .opacity(self.timeManager.curHeight <= middleHeight ? CGFloat(1-returnAnimationMinToMiddleHeight()) : 0)
+                                    .padding(.trailing, 20)
+//                                    .frame(maxWidth: viewWidth * 0.4, alignment: .center)
+                            }
+                            .frame(maxWidth: viewWidth * 0.4)
+                            
+                        }
+                        
+//                        Text("\(self.timeManager.intervalCount + 1) / \(self.timeManager.taskList.count)")
+//                            .font(.title2)
+//                            .foregroundColor(Color(UIColor.systemGray))
+//                            .fontWeight(.medium)
+//                            //.frame(maxWidth: UIScreen.main.bounds.width * 0.3)
+//                            .padding(.trailing, 30)
 
                     }
                     Spacer()

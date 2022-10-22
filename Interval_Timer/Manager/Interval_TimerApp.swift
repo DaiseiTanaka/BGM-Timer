@@ -8,13 +8,39 @@
 import SwiftUI
 import GoogleMobileAds
 
-class AppDelegate: NSObject, UIApplicationDelegate {
+class AppDelegate: NSObject, UIApplicationDelegate, ObservableObject {
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil
     ) -> Bool {
         GADMobileAds.sharedInstance().start(completionHandler: nil)
         return true
+    }
+    
+    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
+            let config = UISceneConfiguration(name: nil, sessionRole: connectingSceneSession.role)
+            config.delegateClass = SceneDelegate.self
+            return config
+        }
+}
+
+class SceneDelegate: NSObject, UIWindowSceneDelegate, ObservableObject {
+    @Published var interfaceOrientation: UIInterfaceOrientation = .unknown
+
+    func sceneWillEnterForeground(_ scene: UIScene) {
+        if let scene = scene as? UIWindowScene {
+            interfaceOrientation = scene.interfaceOrientation
+        }
+    }
+
+    func sceneDidBecomeActive(_ scene: UIScene) {
+        if let scene = scene as? UIWindowScene {
+            interfaceOrientation = scene.interfaceOrientation
+        }
+    }
+
+    func windowScene(_ windowScene: UIWindowScene, didUpdate previousCoordinateSpace: UICoordinateSpace, interfaceOrientation previousInterfaceOrientation: UIInterfaceOrientation, traitCollection previousTraitCollection: UITraitCollection) {
+        interfaceOrientation = windowScene.interfaceOrientation
     }
 }
 

@@ -1,0 +1,38 @@
+/* 
+  Localizable.strings
+  Interval_Timer
+
+  Created by 田中大誓 on 2022/10/21.
+  
+*/
+
+"Interval Schedule" = "スケジュール";
+//"Total: %@:%@" = "合計: %@:%@";
+"My Lists" = "マイリスト";
+"Edit Timer" = "タイマーを編集";
+"Add Timer" = "タイマーを追加";
+"Cancel" = "キャンセル";
+"OK" = "保存";
+"Task name:" = "ラベル";
+"Input This Task Name" = "タイマー";
+"alarm" = "アラーム";
+"Alarm" = "アラーム";
+"BGM & Alarm" = "BGM・アラーム";
+"How long?" = "継続時間";
+"Please set time!" = "BGMタイマーへようこそ！";
+"Tutorial" = "使い方";
+"contents" = "目次";
+"Close" = "閉じる";
+"Delete" = "削除";
+"Edit" = "編集";
+"This list Name" = "リスト名";
+"min" = "分";
+"sec" = "秒";
+"sound" = "音源";
+"music" = "音楽";
+"Delete this timer" = "タイマーを削除";
+
+"Mute" = "なし";
+"Buzzer" = "ブザー音";
+"country" = "田舎";
+"morning" = "明け方";

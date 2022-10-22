@@ -42,6 +42,7 @@ struct TimerView: View {
                         .lineLimit(1)
                         .padding()
                         .foregroundColor(Color(UIColor.systemGray))
+                        .opacity((self.timeManager.timerStatus != .pause) ? 1 : 0.2)
                 } else {
                     Text(self.timeManager.displayTimer())
                         //.font(.custom("DBLCDTempBlack", size: m))
@@ -50,6 +51,7 @@ struct TimerView: View {
                         .lineLimit(1)
                         .padding()
                         .foregroundColor(Color.red)
+                        .opacity((self.timeManager.timerStatus != .pause) ? 1 : 0.2)
                 }
                 
                 //表示形式が"秒"の場合
@@ -66,6 +68,7 @@ struct TimerView: View {
                         .lineLimit(1)
                         .padding()
                         .foregroundColor(Color(UIColor.systemGray))
+                        .opacity((self.timeManager.timerStatus != .pause) ? 1 : 0.2)
                 } else {
                     Text(self.timeManager.displayTimer())
 //                        .font(.system(size: self.screenWidth * 0.5 + 80 * (Double(self.timeManager.duration).truncatingRemainder(dividingBy: 1)), weight: .thin, design: .monospaced))
@@ -76,6 +79,7 @@ struct TimerView: View {
                         .lineLimit(1)
                         .padding()
                         .foregroundColor(Color.red)
+                        .opacity((self.timeManager.timerStatus != .pause) ? 1 : 0.2)
                     //.opacity(Double(13 * self.timeManager.duration / self.timeManager.maxValue).truncatingRemainder(dividingBy: 1) + 0.1)
                 }
             }

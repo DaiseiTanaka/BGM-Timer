@@ -31,7 +31,7 @@ struct WorkThroughAdgendaView: View {
     ]
     
     private var adgendaIndex: [Int] = [0, 1, 8, 10, 12, 15, 19]
-    
+
     var body: some View {
         NavigationView {
             ZStack {
@@ -56,7 +56,7 @@ struct WorkThroughAdgendaView: View {
             .sheet (isPresented: self.$showWorkThroughView) {
                 WorkThroughView()
             }
-            .background(.white)
+            //.background(.white)
             .navigationBarTitleDisplayMode(.automatic)
             .navigationTitle("Tutorial")
             .navigationBarItems(

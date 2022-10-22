@@ -37,6 +37,7 @@
 		35645B9D28E19CF7003D3556 /* CardViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35645B9C28E19CF7003D3556 /* CardViewTest.swift */; };
 		35B4EEFB28C8EA2600648224 /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 35B4EEFA28C8EA2600648224 /* PartialSheet */; };
 		35BD95DB28FED5D400139EC1 /* Neumorphic in Frameworks */ = {isa = PBXBuildFile; productRef = 35BD95DA28FED5D400139EC1 /* Neumorphic */; };
+		35BD95DD2902267A00139EC1 /* FlatGlassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BD95DC2902267A00139EC1 /* FlatGlassView.swift */; };
 		35BFFE7928E4885000153EBF /* Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BFFE7828E4885000153EBF /* Scale.swift */; };
 		35CE63C628F9653F0045D7F9 /* StopWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CE63C528F9653F0045D7F9 /* StopWatch.swift */; };
 		35E0B29B28F45BED0011F019 /* WorkThroughAdgendaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E0B29A28F45BED0011F019 /* WorkThroughAdgendaView.swift */; };
@@ -45,6 +46,9 @@
 		35ED997F28CA020E0075F0F3 /* IntervalListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35ED997E28CA020E0075F0F3 /* IntervalListView.swift */; };
 		35ED998228CA03EF0075F0F3 /* IntervalDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 35ED998028CA03EF0075F0F3 /* IntervalDataModel.xcdatamodeld */; };
 		35EE10E628D96FD100D78404 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE10E528D96FD100D78404 /* EditView.swift */; };
+		35FAA67E2902B566000FADD1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 35FAA6802902B566000FADD1 /* Localizable.strings */; };
+		35FAA68329040844000FADD1 /* TestHalfModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FAA68229040844000FADD1 /* TestHalfModal.swift */; };
+		35FAA68529040EDE000FADD1 /* IntervalListView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FAA68429040EDE000FADD1 /* IntervalListView2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +81,7 @@
 		35645B9328DDA695003D3556 /* MyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListView.swift; sourceTree = "<group>"; };
 		35645B9A28DF0BDF003D3556 /* MyListDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListDetailView.swift; sourceTree = "<group>"; };
 		35645B9C28E19CF7003D3556 /* CardViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewTest.swift; sourceTree = "<group>"; };
+		35BD95DC2902267A00139EC1 /* FlatGlassView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlatGlassView.swift; sourceTree = "<group>"; };
 		35BFFE7828E4885000153EBF /* Scale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scale.swift; sourceTree = "<group>"; };
 		35CE63C528F9653F0045D7F9 /* StopWatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatch.swift; sourceTree = "<group>"; };
 		35E0B29A28F45BED0011F019 /* WorkThroughAdgendaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkThroughAdgendaView.swift; sourceTree = "<group>"; };
@@ -85,6 +90,10 @@
 		35ED997E28CA020E0075F0F3 /* IntervalListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalListView.swift; sourceTree = "<group>"; };
 		35ED998128CA03EF0075F0F3 /* IntervalDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = IntervalDataModel.xcdatamodel; sourceTree = "<group>"; };
 		35EE10E528D96FD100D78404 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
+		35FAA67F2902B566000FADD1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		35FAA6812902B579000FADD1 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		35FAA68229040844000FADD1 /* TestHalfModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHalfModal.swift; sourceTree = "<group>"; };
+		35FAA68429040EDE000FADD1 /* IntervalListView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalListView2.swift; sourceTree = "<group>"; };
 		6B40DBBD47F7AE887D20C457 /* Pods_Interval_Timer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Interval_Timer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E31B3F2B7CB3099E6CABE2AC /* Pods-Interval_Timer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Interval_Timer.debug.xcconfig"; path = "Target Support Files/Pods-Interval_Timer/Pods-Interval_Timer.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -180,6 +189,7 @@
 				354D279528E6CAEA008CA018 /* BannarView.swift */,
 				351503BD28EA916F000526BC /* WorkThroughView.swift */,
 				35E0B29A28F45BED0011F019 /* WorkThroughAdgendaView.swift */,
+				35BD95DC2902267A00139EC1 /* FlatGlassView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -196,6 +206,8 @@
 				35645B9C28E19CF7003D3556 /* CardViewTest.swift */,
 				3534781228E85B020071A7C7 /* PageContentView.swift */,
 				3534781428E861160071A7C7 /* TopMenuTest.swift */,
+				35FAA68229040844000FADD1 /* TestHalfModal.swift */,
+				35FAA68429040EDE000FADD1 /* IntervalListView2.swift */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -208,6 +220,7 @@
 				354E703728C8CBC2001EE49F /* Data.swift */,
 				35BFFE7828E4885000153EBF /* Scale.swift */,
 				35CE63C528F9653F0045D7F9 /* StopWatch.swift */,
+				35FAA6802902B566000FADD1 /* Localizable.strings */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -278,6 +291,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ja,
 			);
 			mainGroup = 354E701B28C8CAF7001EE49F;
 			packageReferences = (
@@ -300,6 +314,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				354E702F28C8CAF9001EE49F /* Preview Assets.xcassets in Resources */,
+				35FAA67E2902B566000FADD1 /* Localizable.strings in Resources */,
 				354E702C28C8CAF9001EE49F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -355,15 +370,18 @@
 			files = (
 				354E704828C8CC63001EE49F /* TimeOver.swift in Sources */,
 				354E703A28C8CBEC001EE49F /* TimerView.swift in Sources */,
+				35FAA68329040844000FADD1 /* TestHalfModal.swift in Sources */,
 				354D279628E6CAEA008CA018 /* BannarView.swift in Sources */,
 				354E704428C8CC53001EE49F /* SettingView.swift in Sources */,
 				3534781528E861160071A7C7 /* TopMenuTest.swift in Sources */,
 				354E704628C8CC5A001EE49F /* SoundListView.swift in Sources */,
+				35FAA68529040EDE000FADD1 /* IntervalListView2.swift in Sources */,
 				3521A30C28D7559B0038913E /* OrientationDetector.swift in Sources */,
 				35ED997D28C9D1F80075F0F3 /* ModalView.swift in Sources */,
 				35645B9B28DF0BDF003D3556 /* MyListDetailView.swift in Sources */,
 				354E702A28C8CAF7001EE49F /* ContentView.swift in Sources */,
 				3537294628FD1E7B003EF92D /* NotificationModel.swift in Sources */,
+				35BD95DD2902267A00139EC1 /* FlatGlassView.swift in Sources */,
 				35ED998228CA03EF0075F0F3 /* IntervalDataModel.xcdatamodeld in Sources */,
 				35226BA728D4309100105C95 /* FinalSoundListView.swift in Sources */,
 				35EE10E628D96FD100D78404 /* EditView.swift in Sources */,
@@ -389,6 +407,18 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		35FAA6802902B566000FADD1 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				35FAA67F2902B566000FADD1 /* en */,
+				35FAA6812902B579000FADD1 /* ja */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		354E703028C8CAF9001EE49F /* Debug */ = {
@@ -512,7 +542,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.9.4;
+				CURRENT_PROJECT_VERSION = 1.9.8;
 				DEVELOPMENT_ASSET_PATHS = "\"Interval_Timer/Preview Content\"";
 				DEVELOPMENT_TEAM = NZ6NQZK56A;
 				ENABLE_PREVIEWS = YES;
@@ -529,7 +559,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.9.4;
+				MARKETING_VERSION = 1.9.8;
 				PRODUCT_BUNDLE_IDENTIFIER = "akikomi-project.mindfulness-timer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -548,7 +578,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.9.4;
+				CURRENT_PROJECT_VERSION = 1.9.8;
 				DEVELOPMENT_ASSET_PATHS = "\"Interval_Timer/Preview Content\"";
 				DEVELOPMENT_TEAM = NZ6NQZK56A;
 				ENABLE_PREVIEWS = YES;
@@ -565,7 +595,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.9.4;
+				MARKETING_VERSION = 1.9.8;
 				PRODUCT_BUNDLE_IDENTIFIER = "akikomi-project.mindfulness-timer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

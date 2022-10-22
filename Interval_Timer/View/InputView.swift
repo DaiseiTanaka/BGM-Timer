@@ -103,14 +103,14 @@ struct InputView: View {
                 
                 Spacer()
             }
-            .background(Color(UIColor.systemGray6))
+            //.background(Color(UIColor.systemGray6))
             .navigationTitle("Add Timer")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(
                 leading:
                     Text("Cancel")
-                    .padding(.leading, 10)
-                    .font(.system(size: 18))
+                    .padding(.leading, 5)
+                    .font(.system(size: 17))
                     .foregroundColor(.red)
                     .onTapGesture{
                         let impactHeavy = UIImpactFeedbackGenerator(style: .medium)
@@ -119,10 +119,13 @@ struct InputView: View {
                     }
                 ,trailing:
                     Text("OK")
-                    .padding(.trailing, 10)
-                    .font(.system(size: 18, weight: .bold))
+                    .padding(.trailing, 5)
+                    .font(.system(size: 17, weight: .bold))
                     .foregroundColor(.blue)
                     .onTapGesture {
+                        if timeManager.task == "" {
+                            timeManager.task = "タイマー"
+                        }
                         self.timeManager.screenCount = 0
                         addDetailToListDelegate.addDetailToList(task: timeManager.task, bgmName: timeManager.soundName, alarmID: Int(timeManager.alarmId), time: timeManager.min*60 + timeManager.sec, min: timeManager.min, sec: timeManager.sec, myListIndex: myListIndex)
                         self.timeManager.setTimer()

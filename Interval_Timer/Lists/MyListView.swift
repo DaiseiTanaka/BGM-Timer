@@ -8,13 +8,21 @@
 import Foundation
 import SwiftUI
 
+
 struct MyListView: View {
     @EnvironmentObject var timeManager: TimeManager
     @Environment(\.presentationMode) var presentation
-    
+    @Environment(\.colorScheme) var colorScheme  //ダークモードかライトモードか検出
+
     @State private var show: Bool = false
     @State var editMode: EditMode = .inactive
     
+    init() {
+        //UITableView.appearance().backgroundColor = .orange
+        //UIView.appearance().backgroundColor = .green
+        UICollectionView.appearance().backgroundColor = UIColor.systemGray6 //好きな色
+    }
+
     var body: some View {
         ZStack {
             List {
@@ -22,7 +30,8 @@ struct MyListView: View {
                             HStack {
                     Text("My Lists")
                         .padding(.leading, 10)
-                        .font(.title)
+                        //.font(.title)
+                        .font(.system(size: 26, weight: .bold))
                         .foregroundColor(Color(UIColor.systemGray))
                     Spacer()
                     Button.init(action: { self.editMode = self.editMode.isEditing ? .inactive : .active }, label: {
@@ -38,28 +47,30 @@ struct MyListView: View {
                     })
                 }
                     .onTapGesture{
-                        self.timeManager.sideMenuOffset = -1 * UIScreen.main.bounds.width
+                        //self.timeManager.sideMenuOffset = -1 * UIScreen.main.bounds.width
+                        self.show = true
                     })
                 {
                     ForEach(Array(timeManager.intervalList.enumerated()), id: \.offset) { index, list in
                         HStack {
-//                            Text("\(index + 1): ")
-//                                .font(.subheadline)
-//                                .frame(alignment: .leading)
-//                                .frame(minWidth: 7)
-                            
+                            if self.timeManager.pageIndex == index && self.timeManager.intervalList.count > 1 && !self.editMode.isEditing {
+                                Image(systemName: "chevron.forward")
+                                    .foregroundColor(Color(UIColor.gray))
+                            }
                             Text(list.listName)
                                 .font(.footnote)
                                 .lineLimit(1)
                             
                             Spacer()
                             
-                            Text("(\(list.taskList.count))")
-                            
+                            if !self.editMode.isEditing {
+                                Text("(\(list.taskList.count))")
+                            }
                         }
                         //.id(UUID())
                         .contentShape(Rectangle())
-                        .listRowBackground(self.timeManager.pageIndex == index && self.timeManager.intervalList.count > 1 ? Color(UIColor.systemGray3) : Color(UIColor.systemBackground))
+                        //.listRowBackground(self.timeManager.pageIndex == index && self.timeManager.intervalList.count > 1 ? Color(UIColor.systemGray3) : Color(UIColor.systemGray5))
+                        .listRowBackground(colorScheme == .light ? .white : Color(UIColor.systemGray5))
                         .onTapGesture {
                             self.timeManager.pageIndex = index
                         }
@@ -108,13 +119,25 @@ struct MyListView: View {
                     .onMove(perform: moveRow)
                 }
             }
-            //.listStyle(.inset)
+            
             addListButton
             
         }
         //.background(Color(UIColor.systemGray6))
         .environment(\.editMode, self.$editMode)
         .animation(.easeInOut, value: editMode)  // editボタンを押したときのアニメーション
+        .sheet(isPresented: $show) {
+           HalfSheet {
+               List {
+                   ForEach(0..<100) { num in
+                       Text("\(num)")
+                   }
+                   .onDelete(perform: deleteList)
+                   .onMove(perform: moveRow)
+               }
+               
+           }
+        }
         
     }
     
@@ -131,15 +154,16 @@ struct MyListView: View {
                     }) {
                         Image(systemName: "plus.circle.fill")
                             .font(.system(size: 40))
-                            //.shadow(color: .gray, radius: 3, x: 3, y: 3)
+                        //.shadow(color: .gray, radius: 3, x: 3, y: 3)
                             .shadow(color: .black.opacity(0.4), radius: 5, x: 3, y: 3)
-                            .shadow(color: .white.opacity(0.4), radius: 5, x: -3, y: -3)
+                            .shadow(color: .black.opacity(0.1), radius: 5, x: -3, y: -3)
                             .opacity(0.75)
                     }
                 Spacer()
             }
-            .padding(.bottom, self.timeManager.intervalList.count < 5 ? 200 : 100)
+            .padding(.bottom, self.timeManager.intervalList.count < 5 ? 250 : 200)
         }
+        .background(Color(UIColor.clear))
         
     }
     
@@ -222,5 +246,32 @@ struct MyListView_Previews: PreviewProvider {
     static var previews: some View {
         MyListView()
             .environmentObject(TimeManager())
+    }
+}
+
+//struct BackgroundClearView: UIViewRepresentable {
+//
+//    func makeUIView(context: Context) -> UIView {
+//        let view = UIView()
+//        Task {
+//            view.superview?.superview?.backgroundColor = .clear
+//        }
+//        return view
+//    }
+//
+//    func updateUIView(_ uiView: UIView, context: Context) {}
+//}
+//
+//extension View {
+//
+//    func backgroundClearSheet() -> some View {
+//        background(BackgroundClearView())
+//    }
+//}
+//
+extension UICollectionReusableView {
+    override open var backgroundColor: UIColor? {
+        get { .clear }
+        set { }
     }
 }

@@ -12,6 +12,8 @@ import Neumorphic
 struct ButtonsView: View {
     @EnvironmentObject var timeManager: TimeManager
     
+    @Environment(\.colorScheme) var colorScheme  //ダークモードかライトモードか検出
+    
     var body: some View {
         HStack {
             Button(action: {
@@ -24,7 +26,7 @@ struct ButtonsView: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 35, height: 35)
                     .opacity((self.timeManager.timerStatus == .stopped && self.timeManager.intervalCount == 0 && self.timeManager.show != true) ? 0.1 : 1)
-            }.softButtonStyle(Circle(), pressedEffect: .hard)
+            }.softButtonStyle(Circle(), darkShadowColor: colorScheme == .light ? Color.gray.opacity(0.3) : Color.black.opacity(0.2), lightShadowColor: colorScheme == .light ?  Color.white : Color.black.opacity(0.1), pressedEffect: .hard)
                 .padding(.leading, 15)
 
 //            Image(systemName: "stop.circle")
@@ -64,8 +66,10 @@ struct ButtonsView: View {
                     .frame(width: 35, height: 35)
                     .padding(.leading, self.timeManager.timerStatus == .running ? 0 : 5)
                     .opacity(self.timeManager.timerStatus == .stopped && self.timeManager.timeSumDuration < 0.1 ? 0.1 : 1)
-            }.softButtonStyle(Circle(), pressedEffect: .hard)
+            }.softButtonStyle(Circle(), darkShadowColor: colorScheme == .light ? Color.gray.opacity(0.3) : Color.black.opacity(0.2), lightShadowColor: colorScheme == .light ?  Color.white : Color.black.opacity(0.1), pressedEffect: .hard)
                 .padding(.trailing, 15)
+            
+            
             
 //            Image(systemName: self.timeManager.timerStatus == .running ? "pause.circle" : "play.circle")
 //                .resizable()
@@ -91,7 +95,7 @@ struct ButtonsView: View {
 //                }
             
         }
-        .animation(.default, value: 0)
+        .animation(.default, value: self.timeManager.timerStatus)
 
     }
 }

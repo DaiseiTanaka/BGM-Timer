@@ -10,6 +10,8 @@ import Neumorphic
 
 struct ModalView: View {
     @EnvironmentObject var timeManager: TimeManager
+    @Environment(\.colorScheme) var colorScheme  //ダークモードかライトモードか検出
+
     @Binding var isShowing: Bool
     
     @State private var isDragging = false
@@ -27,7 +29,7 @@ struct ModalView: View {
     @State private var openOffset = CGFloat.zero
     
     var body: some View {
-        //GeometryReader { _ in
+        GeometryReader { _ in
             ZStack(alignment: .bottom) {
                 //VStack {
                 if isShowing {
@@ -39,7 +41,7 @@ struct ModalView: View {
                                         
                     mainView
                         .transition(.move(edge: .bottom))
-
+                        //.gesture(dragGesture2)
                 }
             }
             .onAppear{
@@ -50,7 +52,7 @@ struct ModalView: View {
             //MARK: - Animation
             .animation(.easeInOut(duration: 0.20))
             //.animation(isDragging ? nil : .easeInOut(duration: 0.20), value: self.timeManager.curHeight)  // modal viewの上下のアニメーション速度
-       // }
+       }
     }
     
     var mainView: some View {
@@ -71,7 +73,7 @@ struct ModalView: View {
                                 .opacity(self.timeManager.intervalCount == 0 ? 0.1 : 1)
                                 .foregroundColor(.blue)
                             
-                        }.softButtonStyle(Circle(), pressedEffect: .hard)
+                        }.softButtonStyle(Circle(), darkShadowColor: colorScheme == .light ? Color.gray.opacity(0.3) : Color.black.opacity(0.2), lightShadowColor: colorScheme == .light ?  Color.white : Color.black.opacity(0.1), pressedEffect: .hard)
                         
                         
 //                        Button(action: {
@@ -90,11 +92,16 @@ struct ModalView: View {
 //                        }
                         
                         VStack {
-                            //Capsule()
                             if self.timeManager.curHeight >= maxHeight {
                                 Image(systemName: "chevron.compact.down")
                                     .resizable()
-                                    .frame(width: 60, height: 7)
+                                    .frame(width: 50, height: 7)
+                                    .foregroundColor(Color(UIColor.systemGray3))
+                                    .padding(.top, 10)
+                            } else if self.timeManager.curHeight < middleHeight {
+                                Image(systemName: "chevron.compact.up")
+                                    .resizable()
+                                    .frame(width: 50, height: 7)
                                     .foregroundColor(Color(UIColor.systemGray3))
                                     .padding(.top, 10)
                             } else {
@@ -118,7 +125,7 @@ struct ModalView: View {
                                 .frame(width: self.timeManager.curHeight < maxHeight ? 10 : 15, height: self.timeManager.curHeight < maxHeight ? 15 : 10)
                                 .opacity(self.timeManager.intervalCount == self.timeManager.taskList.count - 1 || self.timeManager.taskList.count == 0 ? 0.1 : 1)
                                 .foregroundColor(.blue)
-                        }.softButtonStyle(Circle(), pressedEffect: .hard)
+                        }.softButtonStyle(Circle(), darkShadowColor: colorScheme == .light ? Color.gray.opacity(0.3) : Color.black.opacity(0.2), lightShadowColor: colorScheme == .light ?  Color.white : Color.black.opacity(0.1), pressedEffect: .hard)
                         
 //                        Button(action: {
 //                            if self.timeManager.intervalCount != self.timeManager.taskList.count - 1 || self.timeManager.taskList.count == 0 {
@@ -145,29 +152,24 @@ struct ModalView: View {
                 }
                 .frame(height: 90)
                 .frame(maxWidth: .infinity)
-                    IntervalListView()
                 
+                IntervalListView()
+                
+            }
+            .frame(maxWidth: .infinity)
+            .frame(height: timeManager.curHeight)
+            .background(
+                ZStack {                    
+                    RoundedRectangle(cornerRadius: 20)
+                        .shadow(color: Color(UIColor.black).opacity(0.2), radius: 3, x: 0, y: -0.5)
                 }
-                .frame(maxWidth: .infinity)
-                .frame(height: timeManager.curHeight)
-                .background(
-                    ZStack {
-//                        RoundedRectangle(cornerRadius: 20).fill(Color.Neumorphic.main).softOuterShadow()
-                        
-                        RoundedRectangle(cornerRadius: 20)
-                            .shadow(color: Color(UIColor.black).opacity(0.2), radius: 3, x: 0, y: -0.5)
-                        //                    Rectangle()
-                        //                        .frame(height: 40)
-                        //                        .ignoresSafeArea()
-                        //                        .background(Color(UIColor.systemGray6))
-                    }
-                        .gesture(dragGesture)
-                        .foregroundColor(Color(UIColor.systemGray6))
-                    
-                )
-                //MARK: - Animation
-                //.animation(isDragging ? nil : .easeInOut(duration: 0.15), value: self.timeManager.curHeight)
-                //.animation(isDragging ? nil : .easeInOut(duration: 0.20), value: self.timeManager.curHeight)  // modal viewの上下のアニメーション速度
+                    .gesture(dragGesture)
+                    .foregroundColor(Color(UIColor.systemGray6))
+                
+            )
+            //MARK: - Animation
+            //.animation(isDragging ? nil : .easeInOut(duration: 0.15), value: self.timeManager.curHeight)
+            //.animation(isDragging ? nil : .easeInOut(duration: 0.20), value: self.timeManager.curHeight)  // modal viewの上下のアニメーション速度
         }
     }
     
@@ -232,6 +234,25 @@ struct ModalView: View {
                 }
                 
                 prevStableHeight = timeManager.curHeight
+            }
+    }
+    
+    var dragGesture2: some Gesture {
+        DragGesture(minimumDistance: 0, coordinateSpace: .global)
+            .onChanged { val in
+                if !isDragging {
+                    isDragging = true
+                }
+                let dragAmount = val.translation.height - prevDragTranslation.height
+                if timeManager.curHeight > maxHeight {
+                    timeManager.curHeight -= dragAmount / 6
+                } else if timeManager.curHeight < minHeight {
+                    timeManager.curHeight -= dragAmount / 20
+                } else {
+                    timeManager.curHeight -= dragAmount
+                }
+                
+                prevDragTranslation = val.translation
             }
     }
 }

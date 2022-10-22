@@ -34,7 +34,6 @@ struct EditView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                
                 Form {
                     Section( header: Text("Task name:")) {
                         TextField("Input This Task Name", text: $timeManager.task,
@@ -95,6 +94,17 @@ struct EditView: View {
                     Section(header: Text("How long?")) {
                         picker
                     }
+                    
+                    HStack {
+                        Spacer()
+                        Text("Delete this timer")
+                            .foregroundColor(.red)
+                            .onTapGesture {
+                                delete(at: editIndex)
+                                presentation.wrappedValue.dismiss()
+                            }
+                        Spacer()
+                    }
                 }
                 
                 Color.black
@@ -106,7 +116,6 @@ struct EditView: View {
 
                 Spacer()
             }
-            .background(Color(UIColor.systemGray))
             .navigationTitle("Edit Timer")
             .navigationBarTitleDisplayMode(.inline)
             .onAppear{
@@ -125,8 +134,8 @@ struct EditView: View {
             .navigationBarItems(
                 leading:
                     Text("Cancel")
-                    .padding(.leading, 10)
-                    .font(.system(size: 18))
+                    .padding(.leading, 5)
+                    .font(.system(size: 17))
                     .foregroundColor(.red)
                     .onTapGesture{
                         let impactHeavy = UIImpactFeedbackGenerator(style: .medium)
@@ -135,10 +144,13 @@ struct EditView: View {
                     }
                 ,trailing:
                     Text("OK")
-                    .padding(.trailing, 10)
-                    .font(.system(size: 18, weight: .bold))
+                    .padding(.trailing, 5)
+                    .font(.system(size: 17, weight: .bold))
                     .foregroundColor(.blue)
                     .onTapGesture {
+                        if timeManager.task == "" {
+                            timeManager.task = "タイマー"
+                        }
                         self.timeManager.screenCount = 0
                         delegate.editTodo(task: timeManager.task, time: timeManager.min*60 + timeManager.sec, sound: timeManager.soundName, finSound: Int(timeManager.alarmId), min: timeManager.min, sec: timeManager.sec, editIndex: editIndex)
                         self.timeManager.setTimer()
@@ -147,9 +159,6 @@ struct EditView: View {
                         presentation.wrappedValue.dismiss()
                     }
             )
-//            .simultaneousGesture(TapGesture().onEnded {
-//                UIApplication.shared.closeKeyboard()
-//            })
         }
     }
     
@@ -189,4 +198,27 @@ struct EditView: View {
             .padding(.horizontal)
         }
     }
+    
+    func delete(at offsets: Int) {
+        self.timeManager.reset()
+        self.timeManager.setTimer()
+        self.timeManager.intervalList[self.timeManager.pageIndex].taskList.remove(at: offsets)
+        self.timeManager.intervalList[self.timeManager.pageIndex].bgmNameList.remove(at: offsets)
+        self.timeManager.intervalList[self.timeManager.pageIndex].alarmIDList.remove(at: offsets)
+        self.timeManager.intervalList[self.timeManager.pageIndex].timeList.remove(at: offsets)
+        self.timeManager.intervalList[self.timeManager.pageIndex].minList.remove(at: offsets)
+        self.timeManager.intervalList[self.timeManager.pageIndex].secList.remove(at: offsets)
+        
+        saveIntervalList(intervalList: self.timeManager.intervalList)
+        self.timeManager.setTimer()
+    }
+    
+    func saveIntervalList(intervalList: [IntervalList]) {
+        let jsonEncoder = JSONEncoder()
+        guard let data = try? jsonEncoder.encode(intervalList) else {
+            return
+        }
+        UserDefaults.standard.set(data, forKey: "LIST2")
+    }
+
 }

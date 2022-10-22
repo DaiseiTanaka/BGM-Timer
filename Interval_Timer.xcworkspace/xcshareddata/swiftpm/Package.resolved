@@ -1,0 +1,32 @@
+{
+  "pins" : [
+    {
+      "identity" : "neumorphic",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/costachung/neumorphic/",
+      "state" : {
+        "branch" : "master",
+        "revision" : "03c6f7b3d27bfb28a082db2e9ffae45fbc69cb8b"
+      }
+    },
+    {
+      "identity" : "partialsheet",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/AndreaMiotto/PartialSheet",
+      "state" : {
+        "revision" : "318f18bfabd2b2ddf785babd2e53bd593c00a254",
+        "version" : "3.1.0"
+      }
+    },
+    {
+      "identity" : "resizablesheet",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/mtj0928/ResizableSheet",
+      "state" : {
+        "revision" : "ed14f53be91c5477486b20138abfaf0c2cdd7ee1",
+        "version" : "0.0.4"
+      }
+    }
+  ],
+  "version" : 2
+}
