@@ -94,16 +94,19 @@ struct InputView: View {
                     }
                 }
                 
-                Color.black
-                    .opacity(editting ? 0.00001 : 0)
-                    .ignoresSafeArea()
-                    .onTapGesture {
-                        isActive = false
-                    }
+//                Color.black
+//                    .opacity(editting ? 0.00001 : 0)
+//                    .ignoresSafeArea()
+//                    .onTapGesture {
+//                        isActive = false
+//                    }
                 
                 Spacer()
             }
-            //.background(Color(UIColor.systemGray6))
+            .simultaneousGesture(editting ? TapGesture().onEnded {
+                self.timeManager.setTimer()
+                UIApplication.shared.closeKeyboard()
+            } : nil)
             .navigationTitle("Add Timer")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(

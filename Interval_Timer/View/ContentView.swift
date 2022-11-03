@@ -119,18 +119,18 @@ struct ContentView: View {
                             .animation(.easeInOut, value: self.timeManager.pageIndex)
                     }
                     
-//                    VStack {
-//                        Spacer()
-//                        BannerView()
-//                            .frame(height: 60)
-//                    }
-//                    .padding(.bottom, 110)
-//
-//                    VStack {
-//                        Spacer()
-//                        BannerView()
-//                            .frame(height: 60)
-//                    }
+                    VStack {
+                        Spacer()
+                        BannerView()
+                            .frame(height: 60)
+                    }
+                    .padding(.bottom, 110)
+
+                    VStack {
+                        Spacer()
+                        BannerView()
+                            .frame(height: 60)
+                    }
 
                     ModalView(isShowing: $timeManager.isSetting)
 

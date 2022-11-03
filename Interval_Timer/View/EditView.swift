@@ -107,15 +107,19 @@ struct EditView: View {
                     }
                 }
                 
-                Color.black
-                    .opacity(editting ? 0.00001 : 0)
-                    .ignoresSafeArea()
-                    .onTapGesture {
-                        isActive = false
-                    }
+//                Color.black
+//                    .opacity(editting ? 0.00001 : 0)
+//                    .ignoresSafeArea()
+//                    .onTapGesture {
+//                        isActive = false
+//                    }
 
                 Spacer()
             }
+            .simultaneousGesture(editting ? TapGesture().onEnded {
+                self.timeManager.setTimer()
+                UIApplication.shared.closeKeyboard()
+            } : nil)
             .navigationTitle("Edit Timer")
             .navigationBarTitleDisplayMode(.inline)
             .onAppear{

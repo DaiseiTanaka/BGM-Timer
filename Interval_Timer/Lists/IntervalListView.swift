@@ -102,7 +102,6 @@ struct IntervalListView: View, InputViewDelegate, EditViewDelegate, AddDetailToL
                                 self.timeManager.sideMenuOffset = self.closeOffset
                             }
                         }
-
                     }
 
                     if self.timeManager.curHeight > middleHeight {
