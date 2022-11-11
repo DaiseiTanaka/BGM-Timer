@@ -8,7 +8,7 @@
 import SwiftUI
 import AudioToolbox
 import Neumorphic
-
+import MusicKit
 
 struct IntervalListView: View, InputViewDelegate, EditViewDelegate, AddDetailToListDelegate {
     @EnvironmentObject var timeManager: TimeManager
@@ -126,7 +126,7 @@ struct IntervalListView: View, InputViewDelegate, EditViewDelegate, AddDetailToL
                 .animation(.easeInOut, value: editMode)  // editボタンを押したときのアニメーション
                 .background(Color(UIColor.systemGray6))
                 .sheet(isPresented: self.$showEditView) {
-                    EditView(delegate: self, task: self.timeManager.intervalList[self.timeManager.pageIndex].taskList[self.editIndex], sound: self.timeManager.intervalList[self.timeManager.pageIndex].bgmNameList[self.editIndex], alarm: self.timeManager.intervalList[self.timeManager.pageIndex].alarmIDList[self.editIndex], min: self.timeManager.intervalList[self.timeManager.pageIndex].minList[self.editIndex], sec: self.timeManager.intervalList[self.timeManager.pageIndex].secList[self.editIndex], editIndex: self.editIndex)
+                    EditView(delegate: self, task: self.timeManager.intervalList[self.timeManager.pageIndex].taskList[self.editIndex], sound: self.timeManager.intervalList[self.timeManager.pageIndex].bgmNameList[self.editIndex], alarm: self.timeManager.intervalList[self.timeManager.pageIndex].alarmIDList[self.editIndex], min: self.timeManager.intervalList[self.timeManager.pageIndex].minList[self.editIndex], sec: self.timeManager.intervalList[self.timeManager.pageIndex].secList[self.editIndex], editIndex: self.editIndex, appleMusic: self.timeManager.intervalList[self.timeManager.pageIndex].appleMusicSoundList[self.editIndex])
                 }
                 .onAppear {
                     //MARK: - リセット
@@ -267,11 +267,11 @@ struct IntervalListView: View, InputViewDelegate, EditViewDelegate, AddDetailToL
                 }
                 .navigationBarItems(trailing: self.timeManager.curHeight == maxHeight ? EditButton() : nil)
                 .onAppear {
-                    print("Card is changed Appear")
+                    //print("Card is changed Appear")
                     //self.timeManager.setTimer()
                 }
                 .onDisappear {
-                    print("Card is changed Disappear")
+                    //print("Card is changed Disappear")
                     if self.timeManager.pageIndex != self.timeManager.prevMyListAppearingIndex {
                         let impactHeavy = UIImpactFeedbackGenerator(style: .medium)
                         impactHeavy.impactOccurred()
@@ -505,6 +505,7 @@ struct IntervalListView: View, InputViewDelegate, EditViewDelegate, AddDetailToL
                                         self.timeManager.intervalList[self.timeManager.pageIndex].timeList.remove(at: index)
                                         self.timeManager.intervalList[self.timeManager.pageIndex].minList.remove(at: index)
                                         self.timeManager.intervalList[self.timeManager.pageIndex].secList.remove(at: index)
+                                        self.timeManager.intervalList[self.timeManager.pageIndex].appleMusicSoundList.remove(at: index)
                                     } else {
                                         self.timeManager.reset()
                                         self.timeManager.setTimer()
@@ -514,6 +515,7 @@ struct IntervalListView: View, InputViewDelegate, EditViewDelegate, AddDetailToL
                                         self.timeManager.intervalList[self.timeManager.pageIndex].timeList.remove(at: index)
                                         self.timeManager.intervalList[self.timeManager.pageIndex].minList.remove(at: index)
                                         self.timeManager.intervalList[self.timeManager.pageIndex].secList.remove(at: index)
+                                        self.timeManager.intervalList[self.timeManager.pageIndex].appleMusicSoundList.remove(at: index)
                                     }
                                     saveIntervalList(intervalList: self.timeManager.intervalList)
                                     self.timeManager.setTimer()
@@ -753,7 +755,7 @@ struct IntervalListView: View, InputViewDelegate, EditViewDelegate, AddDetailToL
                         .opacity(self.timeManager.timerStatus != .running ? 0.75 : 0)
                 }
                 .sheet(isPresented: self.$showAddView) {
-                    InputView(inputDelegate: self, addDetailToListDelegate: self, task: "", sound: "", min: 0, sec: 0, myListIndex: self.timeManager.pageIndex)
+                    InputView(inputDelegate: self, addDetailToListDelegate: self, task: "", sound: "", min: 0, sec: 0, myListIndex: self.timeManager.pageIndex, appleMusic: nil)
                 }
                 Spacer()
             }
@@ -896,26 +898,28 @@ struct IntervalListView: View, InputViewDelegate, EditViewDelegate, AddDetailToL
         self.timeManager.intervalList[self.timeManager.pageIndex].timeList.remove(atOffsets: offsets)
         self.timeManager.intervalList[self.timeManager.pageIndex].minList.remove(atOffsets: offsets)
         self.timeManager.intervalList[self.timeManager.pageIndex].secList.remove(atOffsets: offsets)
-
+        self.timeManager.intervalList[self.timeManager.pageIndex].appleMusicSoundList.remove(atOffsets: offsets)
+        
         saveIntervalList(intervalList: self.timeManager.intervalList)
         self.timeManager.setTimer()
         //self.timeManager.start()
     }
 
-    func addTodo(task: String, time: Int, sound: String, finSound: Int, min: Int, sec: Int) {
+    func addTodo(task: String, time: Int, sound: String, finSound: Int, min: Int, sec: Int, appleMusic: Song?) {
         self.timeManager.intervalList[self.timeManager.pageIndex].taskList.append(task)
         self.timeManager.intervalList[self.timeManager.pageIndex].bgmNameList.append(sound)
         self.timeManager.intervalList[self.timeManager.pageIndex].alarmIDList.append(finSound)
         self.timeManager.intervalList[self.timeManager.pageIndex].timeList.append(time)
         self.timeManager.intervalList[self.timeManager.pageIndex].minList.append(min)
         self.timeManager.intervalList[self.timeManager.pageIndex].secList.append(sec)
-
+        self.timeManager.intervalList[self.timeManager.pageIndex].appleMusicSoundList.append(appleMusic)
+        
         saveIntervalList(intervalList: self.timeManager.intervalList)
         self.timeManager.setTimer()
     }
 
     func addListFirst() {
-        self.timeManager.intervalList.append(contentsOf: [IntervalList(listName: "My List \(self.timeManager.intervalList.count)", taskList: ["Timer1"], bgmNameList: ["Mute"], alarmIDList: [0], timeList: [90], minList: [1], secList: [30])])
+        self.timeManager.intervalList.append(contentsOf: [IntervalList(listName: "My List \(self.timeManager.intervalList.count)", taskList: ["Timer1"], bgmNameList: ["Mute"], alarmIDList: [0], timeList: [90], minList: [1], secList: [30], appleMusicSoundList: [nil])])
         self.timeManager.myListNameList = returnMyListName()
         saveIntervalList(intervalList: timeManager.intervalList)
         self.timeManager.setTimer()
@@ -937,6 +941,7 @@ struct IntervalListView: View, InputViewDelegate, EditViewDelegate, AddDetailToL
         self.timeManager.intervalList[self.timeManager.pageIndex].timeList.move(fromOffsets: source, toOffset: destination)
         self.timeManager.intervalList[self.timeManager.pageIndex].minList.move(fromOffsets: source, toOffset: destination)
         self.timeManager.intervalList[self.timeManager.pageIndex].secList.move(fromOffsets: source, toOffset: destination)
+        self.timeManager.intervalList[self.timeManager.pageIndex].appleMusicSoundList.move(fromOffsets: source, toOffset: destination)
 
         saveIntervalList(intervalList: self.timeManager.intervalList)
         self.timeManager.reset()
@@ -944,33 +949,35 @@ struct IntervalListView: View, InputViewDelegate, EditViewDelegate, AddDetailToL
         //self.timeManager.start()
     }
 
-    func editTodo(task: String, time: Int, sound: String, finSound: Int, min: Int, sec: Int, editIndex: Int) {
+    func editTodo(task: String, time: Int, sound: String, finSound: Int, min: Int, sec: Int, editIndex: Int, appleMusic: Song?) {
         self.timeManager.intervalList[self.timeManager.pageIndex].taskList[editIndex] = task
         self.timeManager.intervalList[self.timeManager.pageIndex].bgmNameList[editIndex] = sound
         self.timeManager.intervalList[self.timeManager.pageIndex].alarmIDList[editIndex] = finSound
         self.timeManager.intervalList[self.timeManager.pageIndex].timeList[editIndex] = time
         self.timeManager.intervalList[self.timeManager.pageIndex].minList[editIndex] = min
         self.timeManager.intervalList[self.timeManager.pageIndex].secList[editIndex] = sec
-
+        self.timeManager.intervalList[self.timeManager.pageIndex].appleMusicSoundList[editIndex] = appleMusic
+        
         saveIntervalList(intervalList: self.timeManager.intervalList)
         self.timeManager.setTimer()
     }
 
-    func addToList(listName: String, taskList: [String], bgmList: [String], alarmList: [Int], timeList: [Int], minList: [Int], secList: [Int]) {
-        self.timeManager.intervalList.append(IntervalList(listName: listName, taskList: taskList, bgmNameList: bgmList, alarmIDList: alarmList, timeList: timeList, minList: minList, secList: secList))
+    func addToList(listName: String, taskList: [String], bgmList: [String], alarmList: [Int], timeList: [Int], minList: [Int], secList: [Int], appleMusic: [Song?]) {
+        self.timeManager.intervalList.append(IntervalList(listName: listName, taskList: taskList, bgmNameList: bgmList, alarmIDList: alarmList, timeList: timeList, minList: minList, secList: secList, appleMusicSoundList: appleMusic))
 
         saveIntervalList(intervalList: timeManager.intervalList)
         self.timeManager.setTimer()
 
     }
 
-    func addDetailToList(task: String, bgmName: String, alarmID: Int, time: Int, min: Int, sec: Int, myListIndex: Int) {
+    func addDetailToList(task: String, bgmName: String, alarmID: Int, time: Int, min: Int, sec: Int, myListIndex: Int, appleMusic: Song?) {
         self.timeManager.intervalList[myListIndex].taskList.append(task)
         self.timeManager.intervalList[myListIndex].bgmNameList.append(bgmName)
         self.timeManager.intervalList[myListIndex].alarmIDList.append(alarmID)
         self.timeManager.intervalList[myListIndex].timeList.append(time)
         self.timeManager.intervalList[myListIndex].minList.append(min)
         self.timeManager.intervalList[myListIndex].secList.append(sec)
+        self.timeManager.intervalList[myListIndex].appleMusicSoundList.append(appleMusic)
 
         saveIntervalList(intervalList: timeManager.intervalList)
         self.timeManager.setTimer()
@@ -979,7 +986,7 @@ struct IntervalListView: View, InputViewDelegate, EditViewDelegate, AddDetailToL
     func RESET_INTERVAL() {
         let appDomain = Bundle.main.bundleIdentifier
         UserDefaults.standard.removePersistentDomain(forName: appDomain!)
-        self.timeManager.intervalList = [IntervalList(listName: "", taskList: [""], bgmNameList: ["Mute"], alarmIDList: [0], timeList: [0], minList: [0], secList: [0])]
+        self.timeManager.intervalList = [IntervalList(listName: "", taskList: [""], bgmNameList: ["Mute"], alarmIDList: [0], timeList: [0], minList: [0], secList: [0], appleMusicSoundList: [nil])]
         saveIntervalList(intervalList: timeManager.intervalList)
         self.timeManager.setTimer()
 
@@ -1010,15 +1017,15 @@ struct MyEditButton: View {
 }
 
 protocol InputViewDelegate {
-    func addTodo(task: String, time: Int, sound: String, finSound: Int, min: Int, sec: Int)
+    func addTodo(task: String, time: Int, sound: String, finSound: Int, min: Int, sec: Int, appleMusic: Song?)
 }
 
 protocol EditViewDelegate {
-    func editTodo(task: String, time: Int, sound: String, finSound: Int, min: Int, sec: Int, editIndex: Int)
+    func editTodo(task: String, time: Int, sound: String, finSound: Int, min: Int, sec: Int, editIndex: Int, appleMusic: Song?)
 }
 
 protocol AddDetailToListDelegate {
-    func addDetailToList(task: String, bgmName: String, alarmID: Int, time: Int, min: Int, sec: Int, myListIndex: Int)
+    func addDetailToList(task: String, bgmName: String, alarmID: Int, time: Int, min: Int, sec: Int, myListIndex: Int, appleMusic: Song?)
 }
 
 // ② : TextField() を下げる(閉じる)

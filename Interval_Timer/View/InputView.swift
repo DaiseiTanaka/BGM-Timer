@@ -7,7 +7,7 @@
 
 import Foundation
 import SwiftUI
-
+import MusicKit
 
 struct InputView: View {
     @Environment(\.presentationMode) var presentation
@@ -25,6 +25,7 @@ struct InputView: View {
     @State var min: Int
     @State var sec: Int
     @State var myListIndex: Int = 0
+    @State var appleMusic: Song?
     
     @State private var editting = false
     @FocusState  var isActive: Bool
@@ -130,7 +131,7 @@ struct InputView: View {
                             timeManager.task = "タイマー"
                         }
                         self.timeManager.screenCount = 0
-                        addDetailToListDelegate.addDetailToList(task: timeManager.task, bgmName: timeManager.soundName, alarmID: Int(timeManager.alarmId), time: timeManager.min*60 + timeManager.sec, min: timeManager.min, sec: timeManager.sec, myListIndex: myListIndex)
+                        addDetailToListDelegate.addDetailToList(task: timeManager.task, bgmName: timeManager.soundName, alarmID: Int(timeManager.alarmId), time: timeManager.min*60 + timeManager.sec, min: timeManager.min, sec: timeManager.sec, myListIndex: myListIndex, appleMusic: timeManager.appleMusic)
                         self.timeManager.setTimer()
                         let generator = UINotificationFeedbackGenerator()
                         generator.notificationOccurred(.warning)

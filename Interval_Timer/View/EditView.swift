@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import AudioToolbox
+import MusicKit
 
 struct EditView: View {
     @Environment(\.presentationMode) var presentation
@@ -27,7 +28,8 @@ struct EditView: View {
     @State var sec: Int
     
     @State var editIndex: Int
-    
+    @State var appleMusic: Song?
+
     @State private var editting = false
     @FocusState  var isActive: Bool
     
@@ -126,11 +128,18 @@ struct EditView: View {
                 if timeManager.editScreenCount == 0 {
                     self.timeManager.task = task
                     self.timeManager.soundName = sound
-                    self.timeManager.soundID = self.timeManager.sounds.first(where: { $0.soundName == self.timeManager.soundList[editIndex] })!.id
+                    if self.timeManager.appleMusicSoundList[editIndex] == nil {
+                        self.timeManager.soundID = self.timeManager.sounds.first(where: { $0.soundName == self.timeManager.soundList[editIndex] })!.id
+                        self.timeManager.appleMusicSelectedID = MusicItemID("0")
+                    } else {
+                        self.timeManager.soundID = SystemSoundID(100)
+                        self.timeManager.appleMusicSelectedID = self.timeManager.appleMusicSoundList[editIndex]!.id
+                    }
                     self.timeManager.alarmName = self.timeManager.alarms.first(where: { $0.id == SystemSoundID(alarm) })!.soundName
                     self.timeManager.alarmId = self.timeManager.alarms.first(where: { $0.id == SystemSoundID(alarm) })!.id
                     self.timeManager.min = min
                     self.timeManager.sec = sec
+                    self.timeManager.appleMusic = appleMusic
                 }
 
                 timeManager.editScreenCount = 1
@@ -142,6 +151,7 @@ struct EditView: View {
                     .font(.system(size: 17))
                     .foregroundColor(.red)
                     .onTapGesture{
+                        print("EditView: tapped Cancel")
                         let impactHeavy = UIImpactFeedbackGenerator(style: .medium)
                         impactHeavy.impactOccurred()
                         presentation.wrappedValue.dismiss()
@@ -156,8 +166,9 @@ struct EditView: View {
                             timeManager.task = "タイマー"
                         }
                         self.timeManager.screenCount = 0
-                        delegate.editTodo(task: timeManager.task, time: timeManager.min*60 + timeManager.sec, sound: timeManager.soundName, finSound: Int(timeManager.alarmId), min: timeManager.min, sec: timeManager.sec, editIndex: editIndex)
+                        delegate.editTodo(task: timeManager.task, time: timeManager.min*60 + timeManager.sec, sound: timeManager.soundName, finSound: Int(timeManager.alarmId), min: timeManager.min, sec: timeManager.sec, editIndex: editIndex, appleMusic: timeManager.appleMusic)
                         self.timeManager.setTimer()
+                        print("EditView: tapped OK")
                         let generator = UINotificationFeedbackGenerator()
                         generator.notificationOccurred(.warning)
                         presentation.wrappedValue.dismiss()

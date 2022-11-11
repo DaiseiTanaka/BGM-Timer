@@ -11,6 +11,14 @@
 		351503BE28EA916F000526BC /* WorkThroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351503BD28EA916F000526BC /* WorkThroughView.swift */; };
 		3521A30C28D7559B0038913E /* OrientationDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3521A30B28D7559B0038913E /* OrientationDetector.swift */; };
 		35226BA728D4309100105C95 /* FinalSoundListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35226BA628D4309100105C95 /* FinalSoundListView.swift */; };
+		352CBAD129167D10001A1639 /* SearchSongsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352CBACC29167D10001A1639 /* SearchSongsView.swift */; };
+		352CBAD229167D10001A1639 /* SubscriptionInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352CBACD29167D10001A1639 /* SubscriptionInfoView.swift */; };
+		352CBAD329167D10001A1639 /* SearchAlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352CBACE29167D10001A1639 /* SearchAlbumView.swift */; };
+		352CBAD429167D10001A1639 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352CBACF29167D10001A1639 /* AuthView.swift */; };
+		352CBAD529167D10001A1639 /* SongInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352CBAD029167D10001A1639 /* SongInfoView.swift */; };
+		352CBAD929167EC3001A1639 /* PlayButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352CBAD629167EC2001A1639 /* PlayButtonView.swift */; };
+		352CBADA29167EC3001A1639 /* SongListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352CBAD729167EC3001A1639 /* SongListView.swift */; };
+		352CBADB29167EC3001A1639 /* PlayListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352CBAD829167EC3001A1639 /* PlayListView.swift */; };
 		3534781128E858EA0071A7C7 /* ToolBarViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3534781028E858EA0071A7C7 /* ToolBarViewModifier.swift */; };
 		3534781328E85B020071A7C7 /* PageContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3534781228E85B020071A7C7 /* PageContentView.swift */; };
 		3534781528E861160071A7C7 /* TopMenuTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3534781428E861160071A7C7 /* TopMenuTest.swift */; };
@@ -56,6 +64,14 @@
 		351503BD28EA916F000526BC /* WorkThroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkThroughView.swift; sourceTree = "<group>"; };
 		3521A30B28D7559B0038913E /* OrientationDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationDetector.swift; sourceTree = "<group>"; };
 		35226BA628D4309100105C95 /* FinalSoundListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalSoundListView.swift; sourceTree = "<group>"; };
+		352CBACC29167D10001A1639 /* SearchSongsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchSongsView.swift; sourceTree = "<group>"; };
+		352CBACD29167D10001A1639 /* SubscriptionInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionInfoView.swift; sourceTree = "<group>"; };
+		352CBACE29167D10001A1639 /* SearchAlbumView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchAlbumView.swift; sourceTree = "<group>"; };
+		352CBACF29167D10001A1639 /* AuthView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
+		352CBAD029167D10001A1639 /* SongInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongInfoView.swift; sourceTree = "<group>"; };
+		352CBAD629167EC2001A1639 /* PlayButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayButtonView.swift; sourceTree = "<group>"; };
+		352CBAD729167EC3001A1639 /* SongListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongListView.swift; sourceTree = "<group>"; };
+		352CBAD829167EC3001A1639 /* PlayListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayListView.swift; sourceTree = "<group>"; };
 		3534781028E858EA0071A7C7 /* ToolBarViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBarViewModifier.swift; sourceTree = "<group>"; };
 		3534781228E85B020071A7C7 /* PageContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageContentView.swift; sourceTree = "<group>"; };
 		3534781428E861160071A7C7 /* TopMenuTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMenuTest.swift; sourceTree = "<group>"; };
@@ -113,6 +129,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		352CBACB29167D10001A1639 /* DemoAppleMusic */ = {
+			isa = PBXGroup;
+			children = (
+				352CBACC29167D10001A1639 /* SearchSongsView.swift */,
+				352CBACD29167D10001A1639 /* SubscriptionInfoView.swift */,
+				352CBACE29167D10001A1639 /* SearchAlbumView.swift */,
+				352CBACF29167D10001A1639 /* AuthView.swift */,
+				352CBAD029167D10001A1639 /* SongInfoView.swift */,
+			);
+			path = DemoAppleMusic;
+			sourceTree = "<group>";
+		};
 		354E701B28C8CAF7001EE49F = {
 			isa = PBXGroup;
 			children = (
@@ -135,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				354D279428E6C7B6008CA018 /* Interval-Timer-Info.plist */,
+				352CBACB29167D10001A1639 /* DemoAppleMusic */,
 				35645B9928DDA81A003D3556 /* Manager */,
 				35645B9728DDA763003D3556 /* View */,
 				35645B9628DDA72E003D3556 /* UI */,
@@ -197,6 +226,9 @@
 		35645B9828DDA784003D3556 /* Test */ = {
 			isa = PBXGroup;
 			children = (
+				352CBAD629167EC2001A1639 /* PlayButtonView.swift */,
+				352CBAD829167EC3001A1639 /* PlayListView.swift */,
+				352CBAD729167EC3001A1639 /* SongListView.swift */,
 				3537294528FD1E7B003EF92D /* NotificationModel.swift */,
 				3534781028E858EA0071A7C7 /* ToolBarViewModifier.swift */,
 				35ED998028CA03EF0075F0F3 /* IntervalDataModel.xcdatamodeld */,
@@ -368,6 +400,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				352CBAD329167D10001A1639 /* SearchAlbumView.swift in Sources */,
 				354E704828C8CC63001EE49F /* TimeOver.swift in Sources */,
 				354E703A28C8CBEC001EE49F /* TimerView.swift in Sources */,
 				35FAA68329040844000FADD1 /* TestHalfModal.swift in Sources */,
@@ -375,15 +408,19 @@
 				354E704428C8CC53001EE49F /* SettingView.swift in Sources */,
 				3534781528E861160071A7C7 /* TopMenuTest.swift in Sources */,
 				354E704628C8CC5A001EE49F /* SoundListView.swift in Sources */,
+				352CBAD129167D10001A1639 /* SearchSongsView.swift in Sources */,
 				35FAA68529040EDE000FADD1 /* IntervalListView2.swift in Sources */,
 				3521A30C28D7559B0038913E /* OrientationDetector.swift in Sources */,
 				35ED997D28C9D1F80075F0F3 /* ModalView.swift in Sources */,
+				352CBAD229167D10001A1639 /* SubscriptionInfoView.swift in Sources */,
 				35645B9B28DF0BDF003D3556 /* MyListDetailView.swift in Sources */,
 				354E702A28C8CAF7001EE49F /* ContentView.swift in Sources */,
+				352CBADB29167EC3001A1639 /* PlayListView.swift in Sources */,
 				3537294628FD1E7B003EF92D /* NotificationModel.swift in Sources */,
 				35BD95DD2902267A00139EC1 /* FlatGlassView.swift in Sources */,
 				35ED998228CA03EF0075F0F3 /* IntervalDataModel.xcdatamodeld in Sources */,
 				35226BA728D4309100105C95 /* FinalSoundListView.swift in Sources */,
+				352CBADA29167EC3001A1639 /* SongListView.swift in Sources */,
 				35EE10E628D96FD100D78404 /* EditView.swift in Sources */,
 				354E704228C8CC4D001EE49F /* SettingButtonView.swift in Sources */,
 				3534781128E858EA0071A7C7 /* ToolBarViewModifier.swift in Sources */,
@@ -392,13 +429,16 @@
 				354E702828C8CAF7001EE49F /* Interval_TimerApp.swift in Sources */,
 				35E0B29B28F45BED0011F019 /* WorkThroughAdgendaView.swift in Sources */,
 				35ED997F28CA020E0075F0F3 /* IntervalListView.swift in Sources */,
+				352CBAD529167D10001A1639 /* SongInfoView.swift in Sources */,
 				351503BE28EA916F000526BC /* WorkThroughView.swift in Sources */,
 				354E703628C8CBA4001EE49F /* TimeManager.swift in Sources */,
+				352CBAD429167D10001A1639 /* AuthView.swift in Sources */,
 				3534781328E85B020071A7C7 /* PageContentView.swift in Sources */,
 				35645B9428DDA695003D3556 /* MyListView.swift in Sources */,
 				35CE63C628F9653F0045D7F9 /* StopWatch.swift in Sources */,
 				35645B9D28E19CF7003D3556 /* CardViewTest.swift in Sources */,
 				354E703828C8CBC2001EE49F /* Data.swift in Sources */,
+				352CBAD929167EC3001A1639 /* PlayButtonView.swift in Sources */,
 				354E704028C8CC3F001EE49F /* ButtonsView.swift in Sources */,
 				35E3895628E1E6FD0050A354 /* floatingButtonAdd.swift in Sources */,
 				35BFFE7928E4885000153EBF /* Scale.swift in Sources */,
@@ -542,13 +582,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.9.9;
+				CURRENT_PROJECT_VERSION = 2.0.4;
 				DEVELOPMENT_ASSET_PATHS = "\"Interval_Timer/Preview Content\"";
 				DEVELOPMENT_TEAM = NZ6NQZK56A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Interval-Timer-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "BGM Timer";
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "To use apple music";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -559,7 +600,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.9.9;
+				MARKETING_VERSION = 2.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "akikomi-project.mindfulness-timer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -578,13 +619,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.9.9;
+				CURRENT_PROJECT_VERSION = 2.0.4;
 				DEVELOPMENT_ASSET_PATHS = "\"Interval_Timer/Preview Content\"";
 				DEVELOPMENT_TEAM = NZ6NQZK56A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Interval-Timer-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "BGM Timer";
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "To use apple music";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -595,7 +637,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.9.9;
+				MARKETING_VERSION = 2.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "akikomi-project.mindfulness-timer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

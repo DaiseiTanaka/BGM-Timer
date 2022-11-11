@@ -7,6 +7,7 @@
 
 import SwiftUI
 import AudioToolbox
+import MusicKit
 
 enum TimeFormat {
     case hr
@@ -39,4 +40,16 @@ struct IntervalList: Codable {
     var timeList: [Int]
     var minList: [Int]
     var secList: [Int]
+    var appleMusicSoundList: [Song?]
+}
+
+struct AppleMusicList: Identifiable {
+    let id: SystemSoundID
+    let soundName: String
+    var checked: Bool
+    init(id: SystemSoundID, soundName: String) {
+        self.id = id
+        self.soundName = soundName
+        self.checked = false
+    }
 }

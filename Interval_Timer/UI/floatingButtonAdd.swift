@@ -7,13 +7,14 @@
 
 import Foundation
 import SwiftUI
+import MusicKit
 
 struct FloatingButtonAdd: View, AddDetailToListDelegate, InputViewDelegate {
     @EnvironmentObject var timeManager: TimeManager
 
-    func addDetailToList(task: String, bgmName: String, alarmID: Int, time: Int, min: Int, sec: Int, myListIndex: Int) {}
+    func addDetailToList(task: String, bgmName: String, alarmID: Int, time: Int, min: Int, sec: Int, myListIndex: Int, appleMusic: Song?) {}
     
-    func addTodo(task: String, time: Int, sound: String, finSound: Int, min: Int, sec: Int) {}
+    func addTodo(task: String, time: Int, sound: String, finSound: Int, min: Int, sec: Int, appleMusic: Song?) {}
     
     @State private var showAddView: Bool = false
 
@@ -39,7 +40,7 @@ struct FloatingButtonAdd: View, AddDetailToListDelegate, InputViewDelegate {
 //                    .sheet(isPresented: self.$showAddView) {
 //                        InputView(inputDelegate: self, addDetailToListDelegate: self, task: "", sound: "", min: 0, sec: 0, myListIndex: self.timeManager.pageIndex)
 //                    }
-                NavigationLink(destination: InputView(inputDelegate: self, addDetailToListDelegate: self, task: "", sound: "", min: 0, sec: 0, myListIndex: self.timeManager.pageIndex)) {
+                NavigationLink(destination: InputView(inputDelegate: self, addDetailToListDelegate: self, task: "", sound: "", min: 0, sec: 0, myListIndex: self.timeManager.pageIndex, appleMusic: nil)) {
                     HStack {
                         Spacer()
                         Image(systemName: "plus.circle.fill")

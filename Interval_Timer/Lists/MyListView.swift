@@ -176,7 +176,7 @@ struct MyListView: View {
     }
     
     func addList() {
-        self.timeManager.intervalList.append(contentsOf: [IntervalList(listName: "My List" + String(self.timeManager.intervalList.count + 1), taskList: ["Timer1"], bgmNameList: ["Mute"], alarmIDList: [0], timeList: [90], minList: [1], secList: [30])])
+        self.timeManager.intervalList.append(contentsOf: [IntervalList(listName: "My List" + String(self.timeManager.intervalList.count + 1), taskList: ["Timer1"], bgmNameList: ["Mute"], alarmIDList: [0], timeList: [90], minList: [1], secList: [30], appleMusicSoundList: [nil])])
         self.timeManager.myListNameList = returnMyListName()
         saveIntervalList(intervalList: timeManager.intervalList)
         self.timeManager.setTimer()
@@ -184,7 +184,7 @@ struct MyListView: View {
     }
     
     func addListFirst() {
-        self.timeManager.intervalList.append(contentsOf: [IntervalList(listName: "My List \(self.timeManager.intervalList.count)", taskList: ["Timer1"], bgmNameList: ["Mute"], alarmIDList: [0], timeList: [90], minList: [1], secList: [30])])
+        self.timeManager.intervalList.append(contentsOf: [IntervalList(listName: "My List \(self.timeManager.intervalList.count)", taskList: ["Timer1"], bgmNameList: ["Mute"], alarmIDList: [0], timeList: [90], minList: [1], secList: [30], appleMusicSoundList: [nil])])
         self.timeManager.myListNameList = returnMyListName()
         saveIntervalList(intervalList: timeManager.intervalList)
         self.timeManager.setTimer()

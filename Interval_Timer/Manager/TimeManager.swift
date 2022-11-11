@@ -8,7 +8,7 @@
 import SwiftUI
 import AudioToolbox
 import UserNotifications
-
+import MusicKit
 
 class TimeManager: ObservableObject {
     //Pickerで設定した"時間"を格納する変数
@@ -99,6 +99,13 @@ class TimeManager: ObservableObject {
     
     //@Published var showHalfModalView: Bool = false
     
+    // Play apple music
+    @Published var appleMusicSelectedList: [Song] = []  // 最近利用した音源５つを格納
+    @Published var appleMusicSelectedID: MusicItemID = MusicItemID("0")
+    @Published var appleMusicSoundList: [Song?] = []
+    @Published var appleMusic: Song? = nil
+    @Published var isRoadingAppleMusic: Bool = false
+    
     @Published var noises: [Sound] = [
         Sound(id:    0, soundName: "Mute"),
         Sound(id:    1, soundName: "Buzzer"),
@@ -176,7 +183,6 @@ class TimeManager: ObservableObject {
     //@State var notificationIdentifier = "NotificationTest"
 
     func setNotification(){
-
         UNUserNotificationCenter.current().requestAuthorization(
             options: [.alert, .sound, .badge]){
             (granted, _) in
@@ -187,16 +193,14 @@ class TimeManager: ObservableObject {
                 //非許可
             }
         }
-
     }
 
-    
     func makeNotification(){
         
         var prevNotificationDate = 0
         
         for num in self.intervalCount..<self.intervalList[self.pageIndex].timeList.count {
-            var notificationIdentifier = self.taskList[num] + String(num)
+            let notificationIdentifier = self.taskList[num] + String(num)
             let notificationDate = Date().addingTimeInterval(num == self.intervalCount ? TimeInterval(self.duration) : TimeInterval(self.intervalList[self.pageIndex].timeList[num] + prevNotificationDate))
             let dateComp = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: notificationDate)
             
@@ -248,7 +252,6 @@ class TimeManager: ObservableObject {
         //duration = Double(hourSelection * 3600 + minSelection * 60 + secSelection)
         if minList != [] && secList != [] {
             duration = Double(minList[intervalCount]*60 + secList[intervalCount]) - 0.01
-            
         } else {
             duration = -0.01
         }
@@ -261,7 +264,7 @@ class TimeManager: ObservableObject {
         maxValue = duration
         timeSum = Double(minList.reduce(0, +) * 60 + secList.reduce(0, +)) - 0.01
         timeSumDuration = Double(timeList.suffix(taskList.count - intervalCount).reduce(0, +)) - 0.01
-        print("timeSum; ", timeSum, timeList.suffix(2).reduce(0, +))
+        //print("timeSum; ", timeSum, timeList.suffix(2).reduce(0, +))
         //時間表示形式を残り時間（最大時間）から指定する
         //60秒未満なら00形式、60秒以上3600秒未満なら00:00形式、3600秒以上なら00:00:00形式
         if duration < 60 {
@@ -275,7 +278,7 @@ class TimeManager: ObservableObject {
     }
     
     func setInterval() {
-        self.intervalList = loadIntervalList() ?? [IntervalList(listName: "New List", taskList: ["Task1"], bgmNameList: ["Mute"], alarmIDList: [0], timeList: [90], minList: [1], secList: [30])]
+        self.intervalList = loadIntervalList() ?? [IntervalList(listName: "New List", taskList: ["Task1"], bgmNameList: ["Mute"], alarmIDList: [0], timeList: [90], minList: [1], secList: [30], appleMusicSoundList: [nil])]
         
         self.intervalListCount = self.intervalList.count
 //        if self.intervalListCount == 0 {
@@ -289,6 +292,7 @@ class TimeManager: ObservableObject {
             intervalList[pageIndex].alarmIDList.append(0)
             intervalList[pageIndex].minList.append(0)
             intervalList[pageIndex].secList.append(0)
+            intervalList[pageIndex].appleMusicSoundList.append(nil)
             print("=== IntervalList Debug Called!\n \(intervalList[self.pageIndex])")
         }
         self.myListNameList = returnMyListName()
@@ -299,9 +303,11 @@ class TimeManager: ObservableObject {
         self.alarmList = self.intervalList[self.pageIndex].alarmIDList
         self.minList = self.intervalList[self.pageIndex].minList
         self.secList = self.intervalList[self.pageIndex].secList
+        self.appleMusicSoundList = self.intervalList[self.pageIndex].appleMusicSoundList
         saveIntervalList(intervalList: intervalList)
 
-        //print("=== setInterval is called! intervalListCount: \(intervalList.count) pageIndex: \(pageIndex) \n ---intervalList: \(intervalList) \n ---intervalCount: \(intervalCount) taskList: \(taskList)  timeList: \(timeList)  soundList: \(soundList)  finSoundList: \(alarmList)  minList; \(minList)  secList: \(secList)  myListNameList: \(myListNameList)")
+        self.appleMusicSelectedList = loadAppleMusicList() ?? []
+        //print("👍=== setInterval is called! intervalListCount: \(intervalList.count) pageIndex: \(pageIndex) \n ---intervalList: \(intervalList) \n ---intervalCount: \(intervalCount) taskList: \(taskList)  timeList: \(timeList)  soundList: \(soundList)  finSoundList: \(alarmList)  minList; \(minList)  secList: \(secList)  myListNameList: \(myListNameList) \n  appleMusicSoundList: \(appleMusicSoundList)")
     }
     
     func loadIntervalList() -> [IntervalList]? {
@@ -325,6 +331,17 @@ class TimeManager: ObservableObject {
         //print("😄👍: IntervalListの保存に成功しました。")
     }
     
+    func loadAppleMusicList() -> [Song]? {
+        let jsonDecoder = JSONDecoder()
+        guard let data = UserDefaults.standard.data(forKey: "appleMusicList"),
+              let appleMusicList = try? jsonDecoder.decode([Song].self, from: data) else {
+            print("TimeManager: 😭: appleMusicListのロードに失敗しました。")
+            return nil
+        }
+        print("TimeManager: 😄👍: appleMusicListのロードに成功しました。")
+        return appleMusicList
+    }
+        
     func returnMyListName() -> [String] {
         var myList: [String] = []
         for num in 0..<intervalListCount {
@@ -517,6 +534,7 @@ class TimeManager: ObservableObject {
 //            duration = 0
 //        }
         show = false
+        removeNotification()
     }
     
     func restart() {

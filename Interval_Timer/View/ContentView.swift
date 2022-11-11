@@ -13,7 +13,8 @@ import FloatingPanel
 import ResizableSheet
 import UserNotifications
 import Neumorphic
-
+import MusicKit
+import MediaPlayer
 
 struct ContentView: View {    
     @EnvironmentObject var timeManager: TimeManager
@@ -59,7 +60,11 @@ struct ContentView: View {
     
     //@Environment(\.scenePhase) var scenePhase
     @State var refreshID = UUID()
-        
+    
+    @State private var musicSubscription: MusicSubscription?
+    
+    @State var startTime: Date =  Date()
+    
     private func playExplosion(){
         explosion.stop()
         explosion.currentTime = 0.0
@@ -133,35 +138,6 @@ struct ContentView: View {
                     }
 
                     ModalView(isShowing: $timeManager.isSetting)
-
-//                } else {
-//                    if timeManager.isProgressBarOn {
-//                        ProgressBarView()
-//                            .offset(y: self.timeManager.curHeight <= middleHeight ? -animationHeight*returnAnimationMinToMiddleHeight() : -animationHeight)
-//                            .animation(.easeOut, value: self.timeManager.curHeight)
-//                    }
-//
-//                    if timeManager.timerStatus == .stopped {
-//                        if self.timeManager.show == true {
-//                            TimeOverView()
-//                                .offset(y: self.timeManager.curHeight <= middleHeight ? -animationHeight*returnAnimationMinToMiddleHeight() : -animationHeight)
-//                                .animation(.easeOut, value: self.timeManager.curHeight)
-//                        } else {
-//                            TimerView()
-//                                .offset(y: self.timeManager.curHeight <= middleHeight ? -animationHeight*returnAnimationMinToMiddleHeight() : -animationHeight)
-//                                .animation(.easeOut, value: self.timeManager.curHeight)
-//                                .animation(.easeInOut, value: self.timeManager.intervalCount)
-//                                .animation(.easeInOut, value: self.timeManager.pageIndex)
-//                        }
-//                    } else {
-//                        TimerView()
-//                            .offset(y: self.timeManager.curHeight <= middleHeight ? -animationHeight*returnAnimationMinToMiddleHeight() : -animationHeight)
-//                            .animation(.easeOut, value: self.timeManager.curHeight)
-//                            .animation(.easeInOut, value: self.timeManager.intervalCount)
-//                            .animation(.easeInOut, value: self.timeManager.pageIndex)
-//                    }
-//                }
-                
                 
             }
             //MARK: - Animation
@@ -212,8 +188,12 @@ struct ContentView: View {
                         //self.Notify()
                         self.updateTimeFlag = true
                         self.timeManager.pause()
+                        ApplicationMusicPlayer.shared.stop()
+                        SystemMusicPlayer.shared.stop()
                         stopwatch.start()
                     }
+                    ApplicationMusicPlayer.shared.stop()
+                    SystemMusicPlayer.shared.stop()
                 @unknown default: break
                 }
             }
@@ -225,11 +205,13 @@ struct ContentView: View {
                     if self.timeManager.timerStatus == .pause {
                         prevTimerState = "pause"
                         sound.pause()
+                        ApplicationMusicPlayer.shared.pause()
                     }
                     if self.timeManager.timerStatus == .stopped {
                         prevIntervalCount = -1
                         prevTimerState = "stopped"
                         sound.stop()
+                        ApplicationMusicPlayer.shared.stop()
                     }
                     return
                     
@@ -251,11 +233,55 @@ struct ContentView: View {
                     //playVibration()
                     
                     if self.prevIntervalCount != self.timeManager.intervalCount {
-                        sound = try!  AVAudioPlayer(data: NSDataAsset(name: self.timeManager.soundList[self.timeManager.intervalCount])!.data)
-                        playSound()
-                    } else {
-                        if prevTimerState == "pause" {
+                        if self.timeManager.appleMusicSoundList[self.timeManager.intervalCount] == nil {
+                            sound = try!  AVAudioPlayer(data: NSDataAsset(name: self.timeManager.soundList[self.timeManager.intervalCount])!.data)
                             playSound()
+                        } else {
+                            Task {
+                                ApplicationMusicPlayer.shared.queue = .init(for: [self.timeManager.appleMusicSoundList[self.timeManager.intervalCount]!])
+                                do {
+                                    //self.timeManager.isRoadingAppleMusic = true
+                                    //try await ApplicationMusicPlayer.shared.prepareToPlay()
+                                    try await ApplicationMusicPlayer.shared.play()
+                                    //self.timeManager.isRoadingAppleMusic = false
+                                } catch {
+                                    print(error.localizedDescription)
+                                }
+                            }
+                        }
+                        self.startTime = Date()
+                    } else {
+                        if prevTimerState != "running" { // 音楽再開
+                            if self.timeManager.appleMusicSoundList[self.timeManager.intervalCount] == nil {
+                                playSound()
+                            } else {
+                                Task {
+                                    ApplicationMusicPlayer.shared.queue = .init(for: [self.timeManager.appleMusicSoundList[self.timeManager.intervalCount]!])
+                                    do {
+                                        //self.timeManager.isRoadingAppleMusic = true
+                                        //try await ApplicationMusicPlayer.shared.prepareToPlay()
+                                        try await ApplicationMusicPlayer.shared.play()
+                                        //self.timeManager.isRoadingAppleMusic = false
+                                    } catch {
+                                        print(error.localizedDescription)
+                                    }
+                                }
+                            }
+                        }
+                        //print(Int(Date().timeIntervalSince(startTime)), Int(self.timeManager.appleMusicSoundList[self.timeManager.intervalCount]?.duration! ?? 0))
+                        if Int(Date().timeIntervalSince(startTime)) > Int(self.timeManager.appleMusicSoundList[self.timeManager.intervalCount]?.duration! ?? 0) && self.timeManager.appleMusicSoundList[self.timeManager.intervalCount] != nil {
+                            Task {
+                                ApplicationMusicPlayer.shared.queue = .init(for: [self.timeManager.appleMusicSoundList[self.timeManager.intervalCount]!])
+                                do {
+                                    //self.timeManager.isRoadingAppleMusic = true
+                                    //try await ApplicationMusicPlayer.shared.prepareToPlay()
+                                    try await ApplicationMusicPlayer.shared.play()
+                                    //self.timeManager.isRoadingAppleMusic = false
+                                } catch {
+                                    print(error.localizedDescription)
+                                }
+                            }
+                            self.startTime = Date() // 更新
                         }
                     }
                     

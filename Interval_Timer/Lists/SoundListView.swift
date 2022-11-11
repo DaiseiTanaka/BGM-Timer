@@ -8,6 +8,7 @@
 import SwiftUI
 import AudioToolbox
 import AVFoundation
+import MusicKit
 
 struct SoundListView: View {
     @EnvironmentObject var timeManager: TimeManager
@@ -15,6 +16,9 @@ struct SoundListView: View {
 
     @State var soundPlay = try!  AVAudioPlayer(data: NSDataAsset(name: "Mute")!.data)
     @State var prevTappedCell = -1
+    @State var prevTappedAppleMusicID = MusicItemID("0")
+    
+    @State private var musicSubscription: MusicSubscription?
     
     var body: some View {
         //NavigationView {
@@ -45,7 +49,8 @@ struct SoundListView: View {
                     .onTapGesture {
                         self.timeManager.soundID = sound.id
                         self.timeManager.soundName = sound.soundName
-                        
+                        self.timeManager.appleMusicSelectedID = MusicItemID("0")
+                        self.timeManager.appleMusic = nil
                         soundPlay.stop()
                         soundPlay = try!  AVAudioPlayer(data: NSDataAsset(name: sound.soundName)!.data)
                         if self.timeManager.noises[index].checked != true {
@@ -65,6 +70,86 @@ struct SoundListView: View {
                         
                         prevTappedCell = index
                     }
+                }
+            }
+            
+            Section( header: Text("Apple Music")) {
+//                NavigationLink("Auth") {
+//                    AuthView()
+//                }
+//                NavigationLink("Subscription Information") {
+//                    SubscriptionInfoView()
+//                }
+                ForEach(Array(self.timeManager.appleMusicSelectedList.enumerated()), id: \.offset) { index, sound in
+                    HStack {
+                        if self.timeManager.appleMusicSelectedID == sound.id {
+                            HStack {
+                                Spacer()
+                                Image(systemName: "checkmark")
+                                    .foregroundColor(Color.blue)
+                                    .font(.title3)
+                                Spacer()
+                            }
+                            .frame(width: 25)
+                        } else {
+                            HStack {
+                                
+                            }
+                            .frame(width: 25)
+                        }
+                        Text(sound.title)
+                        Spacer()
+                    }
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        self.timeManager.soundID = SystemSoundID(100)               //TODO: - なんとかしよう
+                        self.timeManager.appleMusicSelectedID = sound.id
+                        self.timeManager.soundName = sound.title
+                        self.timeManager.appleMusic = sound
+                        print("SoundListView tapped music: ", sound)
+                        Task {
+                            //ApplicationMusicPlayer.shared.queue = .init(for: [sound])
+                            SystemMusicPlayer.shared.queue = .init(for: [sound])
+                            do {
+//                                try await ApplicationMusicPlayer.shared.prepareToPlay()
+//                                try await ApplicationMusicPlayer.shared.play()
+                                try await SystemMusicPlayer.shared.play()
+                            } catch {
+                                print(error.localizedDescription)
+                            }
+                        }
+                        self.timeManager.setTimer()
+
+                        prevTappedCell = index
+                    }
+                }
+
+                NavigationLink {
+                    SearchSongsView()
+                } label: {
+                    HStack {
+                        HStack {
+                            
+                        }
+                        .frame(width: 25)
+                        Text("Search for music")
+                            .foregroundColor(Color.blue)
+                        Spacer()
+                    }
+                    
+                }
+                .disabled(!(musicSubscription?.canPlayCatalogContent ?? false))
+                
+//                NavigationLink {
+//                    SearchAlbumView()
+//                } label: {
+//                    Text("Search for album")
+//                        .foregroundColor(Color.blue)
+//                }
+            }
+            .task {
+                for await subscription in MusicSubscription.subscriptionUpdates {
+                    self.musicSubscription = subscription
                 }
             }
             
@@ -94,7 +179,8 @@ struct SoundListView: View {
                     .onTapGesture {
                         self.timeManager.soundID = sound.id
                         self.timeManager.soundName = sound.soundName
-                        
+                        self.timeManager.appleMusicSelectedID = MusicItemID("0")
+                        self.timeManager.appleMusic = nil
                         soundPlay.stop()
                         soundPlay = try!  AVAudioPlayer(data: NSDataAsset(name: sound.soundName)!.data)
                         if self.timeManager.bgms[index].checked != true {
@@ -120,9 +206,10 @@ struct SoundListView: View {
         }
         .navigationBarTitle("BGM", displayMode: .automatic)
         .onDisappear {
+            //ApplicationMusicPlayer.shared.stop()
+            SystemMusicPlayer.shared.stop()
             self.timeManager.addScreenCount = 1
         }
-        
     }
 }
 
