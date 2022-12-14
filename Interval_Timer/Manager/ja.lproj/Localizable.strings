@@ -35,3 +35,11 @@
 "Search for album" = "アルバム名から探す";
 "Search term" = "アーティスト、曲、歌詞、その他";
 "Perform search" = "検索";
+"Auth" = "AppleMusic認証状態確認";
+"Authorization status not yet determined." = "認証状態未決定";
+"Access granted" = "アクセス許可済み";
+"Access denied" = "アクセスが拒否されました";
+"User cannot access MusicKit settings." = "AppleMusicにアクセスできません";
+"Unknown case" = "不明なエラーです";
+"Request authorization" = "認証を要求する";
+"Reload authorization status" = "再認証";

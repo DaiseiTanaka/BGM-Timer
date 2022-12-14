@@ -20,6 +20,8 @@ struct SoundListView: View {
     
     @State private var musicSubscription: MusicSubscription?
     
+    @State var showAuthView: Bool = false
+    
     var body: some View {
         //NavigationView {
         List {
@@ -123,23 +125,36 @@ struct SoundListView: View {
                         prevTappedCell = index
                     }
                 }
-
-                NavigationLink {
-                    SearchSongsView()
-                } label: {
+                HStack {
                     HStack {
-                        HStack {
-                            
+                        Spacer()
+                        Button(action: {
+                            //print("helloo")
+                            self.showAuthView = true
+                        }){
+                            Image(systemName: "questionmark.circle")
+                                .foregroundColor(Color.blue)
                         }
-                        .frame(width: 25)
-                        Text("Search for music")
-                            .foregroundColor(Color.blue)
+                        .buttonStyle(BorderlessButtonStyle())
+                        .opacity((musicSubscription?.canPlayCatalogContent ?? false) ? 0 : 1)
+                        
                         Spacer()
                     }
-                    
+                    .frame(width: 25)
+                    NavigationLink {
+                        SearchSongsView()
+                    } label: {
+                        HStack {
+                            
+                            
+                            Text("Search for music")
+                                .foregroundColor(Color.blue)
+                            Spacer()
+                        }
+                        
+                    }
+                    .disabled(!(musicSubscription?.canPlayCatalogContent ?? false))
                 }
-                .disabled(!(musicSubscription?.canPlayCatalogContent ?? false))
-                
 //                NavigationLink {
 //                    SearchAlbumView()
 //                } label: {
@@ -209,6 +224,9 @@ struct SoundListView: View {
             //ApplicationMusicPlayer.shared.stop()
             SystemMusicPlayer.shared.stop()
             self.timeManager.addScreenCount = 1
+        }
+        .sheet(isPresented: self.$showAuthView) {
+            AuthView()
         }
     }
 }
